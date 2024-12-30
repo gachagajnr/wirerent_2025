@@ -1,11 +1,13 @@
 "use client"
 import { useForm } from "react-hook-form";
+ import { InputGroup } from "@/components/ui/input-group";
+import { HiLockClosed, HiMail } from "react-icons/hi";
+
 import { Field } from "@/components/ui/field"
 import {
   Input,
   Button,
   HStack,
-  Flex,
 } from "@chakra-ui/react";
  
 
@@ -21,12 +23,18 @@ export default function ForgotPasswordForm() {
     };
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
-        <HStack mt={2} flexWrap="wrap" flexDirection={{ base: "column", md: "row" }}>
+        <HStack
+          mt={2}
+          flexWrap="wrap"
+          flexDirection={{ base: "column", md: "row" }}
+        >
           <Field
             label="Email"
-            invalid
+            invalid={!!errors.email}
             errorText={errors.email?.message?.toString()}
           >
+                            <InputGroup flex="1" startElement={<HiMail />}>
+
             <Input
               id="email"
               type="email"
@@ -41,15 +49,13 @@ export default function ForgotPasswordForm() {
                   message: "Invalid email address",
                 },
               })}
-            />
+              />
+              </InputGroup>
           </Field>
-         
         </HStack>
-       
 
         <Button
           type="submit"
-    
           mt={4}
           w="full"
           color="white"

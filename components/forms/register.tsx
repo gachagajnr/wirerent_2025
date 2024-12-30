@@ -1,5 +1,8 @@
 "use client"
 import { useForm } from "react-hook-form";
+import { HiLockClosed, HiMail, HiPhone, HiUser } from "react-icons/hi";
+ import { InputGroup } from "@/components/ui/input-group";
+
 import { Field } from "@/components/ui/field"
 import {
   Input,
@@ -8,7 +11,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import {users} from '@/utils/api'
-
+ 
 
  interface RegisterFormProps {
  }
@@ -40,21 +43,63 @@ const RegisterForm: React.FC<RegisterFormProps> = ( ) => {
   
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
-        <HStack
-          mt={4}
-          flexWrap="wrap"
-          flexDirection={{ base: "column", md: "row" }}
-        >
+        <HStack mt={4} flexDirection={{ base: "column", md: "row" }}>
           <Field
-            label="Email"
-            invalid
-            errorText={errors.email?.message?.toString()}
+            label="Name"
+            invalid={!!errors.name}
+            errorText={errors.name?.message?.toString()}
           >
+            <InputGroup flex="1" startElement={<HiUser />}>
+              <Input
+                id="name"
+                type="name"
+                placeholder="Enter full name"
+                border="1px solid #E0E0E0"
+                borderRadius="md"
+                {...register("name", {
+                  required: "Name is required",
+                  pattern: {
+                    value: /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/,
+                    message: "Please enter a valid full name",
+                  },
+                })}
+              />
+            </InputGroup>
+          </Field>
+          <Field
+            label="Website"
+            invalid={!!errors.website}
+            errorText={errors.website?.message?.toString()}
+          >
+            <InputGroup flex="1" startElement="https://">
+              <Input
+                id="website"
+                ps="3.55em"
+                placeholder="yoursite.com"
+                border="1px solid #E0E0E0"
+                borderRadius="md"
+                {...register("website", {
+                  required: "Phone number is required",
+                  pattern: {
+                    value: /^[0-9]{10}$/,
+                    message: "Invalid phone number",
+                  },
+                })}
+              />
+            </InputGroup>
+          </Field>
+        </HStack>
+        <Field
+          mt={2}
+          label="Email"
+          invalid={!!errors.email}
+          errorText={errors.email?.message?.toString()}
+        >
+          <InputGroup width="100%" flex="1" startElement={<HiMail />}>
             <Input
               id="email"
               type="email"
               placeholder="Enter your email"
-              padding={3}
               border="1px solid #E0E0E0"
               borderRadius="md"
               {...register("email", {
@@ -65,12 +110,15 @@ const RegisterForm: React.FC<RegisterFormProps> = ( ) => {
                 },
               })}
             />
-          </Field>
-          <Field
-            label="Phone Number"
-            invalid
-            errorText={errors.phoneNumber?.message?.toString()}
-          >
+          </InputGroup>
+        </Field>
+        <Field
+          mt={2}
+          label="Phone Number"
+          invalid={!!errors.phoneNumber}
+          errorText={errors.phoneNumber?.message?.toString()}
+        >
+          <InputGroup width="100%" flex="1" startElement={<HiPhone />}>
             <Input
               id="phoneNumber"
               type="number"
@@ -86,52 +134,58 @@ const RegisterForm: React.FC<RegisterFormProps> = ( ) => {
                 },
               })}
             />
-          </Field>
-        </HStack>
+          </InputGroup>
+        </Field>
         <Flex flexDirection={{ base: "column", md: "row" }} gap={4}>
           <Field
             label="Password"
             mt={2}
-            invalid
+            invalid={!!errors.password}
             errorText={errors.password?.message?.toString()}
           >
-            <Input
-              id="password"
-              type="password"
-              placeholder="********"
-              padding={3}
-              border="1px solid #E0E0E0"
-              borderRadius="md"
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password should be at least 6 characters",
-                },
-              })}
-            />
+            <InputGroup flex="1" startElement={<HiLockClosed />}>
+              <Input
+                id="password"
+                type="password"
+                placeholder="********"
+                padding={3}
+                border="1px solid #E0E0E0"
+                borderRadius="md"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password should be at least 6 characters",
+                  },
+                })}
+              />
+            </InputGroup>
           </Field>
           <Field
             label="Confirm Password"
             mt={2}
-            invalid
-            errorText={errors.password?.message?.toString()}
+            invalid={!!errors.confirmPassword}
+            errorText={errors.confirmPassword?.message?.toString()}
           >
-            <Input
-              id="confirmPassword"
-              type="password"
-              placeholder="********"
-              padding={3}
-              border="1px solid #E0E0E0"
-              borderRadius="md"
-              {...register("confirmPassword", {
-                required: "Confirm Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password should be at least 6 characters",
-                },
-              })}
-            />
+            <InputGroup flex="1" startElement={<HiLockClosed />}>
+              <Input
+                id="confirmPassword"
+                type="password"
+                placeholder="********"
+                padding={3}
+                border="1px solid #E0E0E0"
+                borderRadius="md"
+                {...register("confirmPassword", {
+                  required: "Confirm Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password should be at least 6 characters",
+                  },
+                  validate: (value, formValues) =>
+                    value === formValues.password || "Passwords do not match",
+                })}
+              />
+            </InputGroup>
           </Field>
         </Flex>
 

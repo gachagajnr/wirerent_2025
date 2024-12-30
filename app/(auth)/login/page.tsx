@@ -9,7 +9,7 @@ export default function Login() {
 
   return (
     <Box
-      display="flex"
+       display="flex"
       alignItems="center"
       justifyContent="center"
       bgGradient="linear(to-l, #7928CA, #FF0080)"
@@ -25,7 +25,7 @@ export default function Login() {
       }}
     >
       <Stack  >
-        <Heading as="h1" size="xl"  textAlign="center" color="purple.600">
+        <Heading as="h1" size="3xl" textAlign="center" color="purple.600">
           Welcome Back
         </Heading>
          <LoginForm  />

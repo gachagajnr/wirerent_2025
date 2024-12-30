@@ -6,9 +6,10 @@ import { Field } from "@/components/ui/field"
 import {
   Input,
   
- 
-  Button,
- } from "@chakra-ui/react";
+   Button,
+} from "@chakra-ui/react";
+ import { InputGroup } from "@/components/ui/input-group";
+
 import feathersClient from "@/utils/api";
 
  export default function LoginForm() {
@@ -39,9 +40,11 @@ import feathersClient from "@/utils/api";
       <form onSubmit={handleSubmit(onSubmit)}>
         <Field
           label="Email"
-          invalid
+          invalid={!!errors.email}
           errorText={errors.email?.message?.toString()}
         >
+                <InputGroup flex="1" startElement={<HiMail />}>
+
           <Input
             id="email"
             type="email"
@@ -56,15 +59,18 @@ import feathersClient from "@/utils/api";
                 message: "Invalid email address",
               },
             })}
-          />
+            />
+            </InputGroup>
         </Field>
 
         <Field
           label="Password"
           mt={2}
-          invalid
+          invalid={!!errors.password}
           errorText={errors.password?.message?.toString()}
         >
+                          <InputGroup flex="1" startElement={<HiLockClosed />}>
+
           <Input
             id="password"
             type="password"
@@ -79,7 +85,8 @@ import feathersClient from "@/utils/api";
                 message: "Password should be at least 6 characters",
               },
             })}
-          />
+            />
+            </InputGroup>
         </Field>
 
         <Button
