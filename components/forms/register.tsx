@@ -10,8 +10,8 @@ import {
   HStack,
   Flex,
 } from "@chakra-ui/react";
-import {users} from '@/utils/api'
- 
+import { createAccount } from "@/lib/auth";
+  
 
  interface RegisterFormProps {
  }
@@ -31,7 +31,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ( ) => {
       "phoneNumber":data.phoneNumber
     }
     try {
-      const response = await users.create(body);
+      const response = await createAccount(body);
       console.log("REGISTER RESPONSE",response)
 
     } catch (e) {

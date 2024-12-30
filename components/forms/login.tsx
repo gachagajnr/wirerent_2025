@@ -1,66 +1,83 @@
 "use client"
+
 import { useForm } from "react-hook-form";
 import { HiLockClosed, HiMail } from 'react-icons/hi';
-import { motion } from 'framer-motion';
+import { useRouter } from "next/navigation";
 import { Field } from "@/components/ui/field"
 import {
   Input,
-  
-   Button,
+  Button,
+  Heading,
 } from "@chakra-ui/react";
- import { InputGroup } from "@/components/ui/input-group";
+import { InputGroup } from "@/components/ui/input-group";
 
-import feathersClient from "@/utils/api";
+import { login } from "@/lib/auth";
+import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 
  export default function LoginForm() {
     const {
       register,
       handleSubmit,
       formState: { errors },
-    } = useForm();
+   } = useForm();
+     const [error, setError] = useState("");
+
+    const { setUser } = useAuth();
+    const router = useRouter();
+
 
     const onSubmit = async(data:any) => {
-     
+      setError('');
     const body = {
       email: data.email,
       password: data.password,
       
     };
     try {
-      const response = await feathersClient.authenticate({
-        strategy: "local",
-       body
-      });
-      console.log("LOGIN RESPONSE", response);
-    } catch (e) {
+      const {user} = await login(
+        body.email,body.password
+      );
+      console.log("USER", user);
+
+      setUser(user);
+      router.push("/dashboard");
+    } catch (e:any) {
       console.log("LOGIN ERROR", e);
+      setError(e.toString());
+
     }
     };
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
+        {error && (
+          <Heading mb={2} as="p" size="xs" textAlign="center" color="red.500">
+            {error}
+          </Heading>
+        )}
+
         <Field
           label="Email"
           invalid={!!errors.email}
           errorText={errors.email?.message?.toString()}
         >
-                <InputGroup flex="1" startElement={<HiMail />}>
-
-          <Input
-            id="email"
-            type="email"
-            placeholder="Enter your email"
-            padding={3}
-            border="1px solid #E0E0E0"
-            borderRadius="md"
-            {...register("email", {
-              required: "Email is required",
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: "Invalid email address",
-              },
-            })}
+          <InputGroup flex="1" startElement={<HiMail />}>
+            <Input
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              padding={3}
+              border="1px solid #E0E0E0"
+              borderRadius="md"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Invalid email address",
+                },
+              })}
             />
-            </InputGroup>
+          </InputGroup>
         </Field>
 
         <Field
@@ -69,24 +86,23 @@ import feathersClient from "@/utils/api";
           invalid={!!errors.password}
           errorText={errors.password?.message?.toString()}
         >
-                          <InputGroup flex="1" startElement={<HiLockClosed />}>
-
-          <Input
-            id="password"
-            type="password"
-            placeholder="********"
-            padding={3}
-            border="1px solid #E0E0E0"
-            borderRadius="md"
-            {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 6,
-                message: "Password should be at least 6 characters",
-              },
-            })}
+          <InputGroup flex="1" startElement={<HiLockClosed />}>
+            <Input
+              id="password"
+              type="password"
+              placeholder="********"
+              padding={3}
+              border="1px solid #E0E0E0"
+              borderRadius="md"
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password should be at least 6 characters",
+                },
+              })}
             />
-            </InputGroup>
+          </InputGroup>
         </Field>
 
         <Button
