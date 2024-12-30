@@ -38,10 +38,9 @@ export default function Login() {
             </Link>
           </Text>
 
-          {/* Sign Up Link */}
-          <Text fontSize="sm" textAlign="center">
+           <Text fontSize="sm" textAlign="center">
             Don't have an account?{' '}
-            <Link color="purple.500" href="/signup">
+            <Link color="purple.500" href="/register">
               Sign Up
             </Link>
           </Text>
