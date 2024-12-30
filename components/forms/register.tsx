@@ -79,10 +79,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ( ) => {
                 border="1px solid #E0E0E0"
                 borderRadius="md"
                 {...register("website", {
-                  required: "Phone number is required",
+                  required: "Domain is required",
                   pattern: {
-                    value: /^[0-9]{10}$/,
-                    message: "Invalid phone number",
+                    value: /^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/,
+                    message: "Please enter a valid website domain (e.g., example.com)",
                   },
                 })}
               />
