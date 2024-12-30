@@ -74,7 +74,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ( ) => {
             <InputGroup flex="1" startElement="https://">
               <Input
                 id="website"
-                ps="3.55em"
+                ps="3.75em"
                 placeholder="yoursite.com"
                 border="1px solid #E0E0E0"
                 borderRadius="md"

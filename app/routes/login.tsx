@@ -32,8 +32,10 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function Login() {
-  return (
-    <Box
+    return (
+ 
+            <Box
+                minH="100vh"
       display="flex"
       alignItems="center"
       justifyContent="center"
@@ -68,6 +70,6 @@ export default function Login() {
           </Link>
         </Text>
       </Stack>
-    </Box>
-  )
+            </Box>
+   )
 }
