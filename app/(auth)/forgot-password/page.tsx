@@ -21,14 +21,14 @@ export default function ForgotPassword() {
       }}
     >
       <Stack>
-        <Heading as="h1" size="xl" mb={6} textAlign="center" color="purple.600">
+        <Heading as="h1" size="xl"  textAlign="center" color="purple.600">
           Reset Password
         </Heading>
         <ForgotPasswordForm />
 
         
 
-        <Text fontSize="sm" mt={3} textAlign="center">
+        <Text fontSize="sm" mt={4} textAlign="center">
           Already have an account?{" "}
           <Link color="purple.500" href="/login">
             Sign in

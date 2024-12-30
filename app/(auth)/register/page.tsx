@@ -20,7 +20,7 @@ export default function Signup() {
       }}
     >
       <Stack>
-        <Heading as="h1" size="xl" mb={6} textAlign="center" color="purple.600">
+        <Heading as="h1" size="xl"   textAlign="center" color="purple.600">
           Create an account
         </Heading>
         <RegisterForm />

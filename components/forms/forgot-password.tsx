@@ -21,7 +21,7 @@ export default function ForgotPasswordForm() {
     };
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
-        <HStack mt={4} flexWrap="wrap" flexDirection={{ base: "column", md: "row" }}>
+        <HStack mt={2} flexWrap="wrap" flexDirection={{ base: "column", md: "row" }}>
           <Field
             label="Email"
             invalid
