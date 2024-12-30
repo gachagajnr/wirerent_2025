@@ -9,7 +9,6 @@ export default function Login() {
 
   return (
     <Box
-    
       display="flex"
       alignItems="center"
       justifyContent="center"
@@ -32,7 +31,7 @@ export default function Login() {
          <LoginForm  />
 
          
-           <Text fontSize="sm" textAlign="center">
+           <Text fontSize="sm" mt={3} textAlign="center">
             <Link color="purple.500" href="/forgot-password">
               Forgot your password?
             </Link>
@@ -41,7 +40,7 @@ export default function Login() {
            <Text fontSize="sm" textAlign="center">
             Don't have an account?{' '}
             <Link color="purple.500" href="/register">
-              Sign Up
+              Register
             </Link>
           </Text>
         </Stack>

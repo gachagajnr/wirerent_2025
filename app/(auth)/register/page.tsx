@@ -25,7 +25,7 @@ export default function Signup() {
         </Heading>
         <RegisterForm />
 
-        <Text fontSize="sm" textAlign="center">
+        <Text fontSize="sm" mt={3} textAlign="center">
           <Link color="purple.500" href="/forgot-password">
             Forgot your password?
           </Link>
@@ -33,7 +33,7 @@ export default function Signup() {
 
         <Text fontSize="sm" textAlign="center">
           Already have an account?{" "}
-          <Link color="purple.500" href="/register">
+          <Link color="purple.500" href="/login">
             Sign in
           </Link>
         </Text>

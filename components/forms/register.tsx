@@ -7,6 +7,7 @@ import {
   HStack,
   Flex,
 } from "@chakra-ui/react";
+ 
 
 export default function RegisterForm() {
     const {
@@ -20,7 +21,11 @@ export default function RegisterForm() {
     };
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
-        <HStack mt={4} flexWrap="wrap" flexDirection={{ base: "column", md: "row" }}>
+        <HStack
+          mt={4}
+          flexWrap="wrap"
+          flexDirection={{ base: "column", md: "row" }}
+        >
           <Field
             label="Email"
             invalid
@@ -113,13 +118,15 @@ export default function RegisterForm() {
 
         <Button
           type="submit"
-          colorScheme="blue"
-          variant="outline"
+          colorPalette="blue"
+          variant="subtle"
           mt={4}
           w="full"
-          size="md"
-          _hover={{ bg: "purple.600" }}
-          _active={{ bg: "purple.700" }}
+          color="white"
+          bg="blue.400"
+          size="sm"
+          _hover={{ bg: "purple.600", borderColor: "blue.500" }}
+          _active={{ bg: "blue.500" }}
         >
           Register
         </Button>
