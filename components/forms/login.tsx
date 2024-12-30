@@ -9,6 +9,7 @@ import {
  
   Button,
  } from "@chakra-ui/react";
+import feathersClient from "@/utils/api";
 
  export default function LoginForm() {
     const {
@@ -17,8 +18,22 @@ import {
       formState: { errors },
     } = useForm();
 
-    const onSubmit = (data:any) => {
-      console.log("data",data);
+    const onSubmit = async(data:any) => {
+     
+    const body = {
+      email: data.email,
+      password: data.password,
+      
+    };
+    try {
+      const response = await feathersClient.authenticate({
+        strategy: "local",
+       body
+      });
+      console.log("LOGIN RESPONSE", response);
+    } catch (e) {
+      console.log("LOGIN ERROR", e);
+    }
     };
     return (
       <form onSubmit={handleSubmit(onSubmit)}>

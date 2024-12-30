@@ -7,18 +7,37 @@ import {
   HStack,
   Flex,
 } from "@chakra-ui/react";
- 
+import {users} from '@/utils/api'
 
-export default function RegisterForm() {
+
+ interface RegisterFormProps {
+ }
+
+const RegisterForm: React.FC<RegisterFormProps> = ( ) => {
     const {
       register,
       handleSubmit,
       formState: { errors },
     } = useForm();
 
-    const onSubmit = (data:any) => {
-      console.log("Register Data",data);
-    };
+  const onSubmit = async(data: any) => {
+
+    const body = {
+      "email": data.email,
+      "password": data.password,
+      "phoneNumber":data.phoneNumber
+    }
+    try {
+      const response = await users.create(body);
+      console.log("REGISTER RESPONSE",response)
+
+    } catch (e) {
+            console.log("REGISTER ERROR", e);
+
+      
+    }
+  };
+  
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
         <HStack
@@ -134,3 +153,4 @@ export default function RegisterForm() {
     );
 }
 
+export default RegisterForm

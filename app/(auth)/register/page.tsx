@@ -1,7 +1,11 @@
 import RegisterForm from "@/components/forms/register";
 import { Box, Heading, Stack, Text, Link } from "@chakra-ui/react";
 
+
+
 export default function Signup() {
+
+   
   return (
     <Box
       display="flex"
@@ -20,10 +24,10 @@ export default function Signup() {
       }}
     >
       <Stack>
-        <Heading as="h1" size="xl"   textAlign="center" color="purple.600">
+        <Heading as="h1" size="xl" textAlign="center" color="purple.600">
           Create an account
         </Heading>
-        <RegisterForm />
+        <RegisterForm   />
 
         <Text fontSize="sm" mt={3} textAlign="center">
           <Link color="purple.500" href="/forgot-password">
