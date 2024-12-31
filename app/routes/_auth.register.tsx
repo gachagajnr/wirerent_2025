@@ -1,18 +1,24 @@
-import { ActionFunction, redirect } from "@remix-run/node";
+import { ActionFunction,LoaderFunction, redirect } from "@remix-run/node";
 import bcrypt from "bcrypt";
 import RegisterForm from "~/components/forms/register";
 import { Box, Stack, Title, Text, Anchor, Container } from "@mantine/core";
 import { authenticator } from "~/utils/auth.server";
 import { connectToDatabase } from "~/utils/db.server";
+import { AuthorizationError } from "remix-auth";
+
+export const loader: LoaderFunction = async ({ request }) => {
+  return await authenticator.isAuthenticated(request, {
+    successRedirect: "/app",
+   });
+};
 
 export const action: ActionFunction = async ({ request }) => {
-  const form = await request.formData();
+  const form = await request.clone().formData();
   const email = form.get("email") as string;
   const password = form.get("password") as string;
   const name = form.get("name") as string;
   const website = form.get("website") as string;
   const phone = form.get("phone") as string;
-  console.log("EMAILS IS", email, password);
 
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
@@ -28,24 +34,27 @@ export const action: ActionFunction = async ({ request }) => {
   const { db } = await connectToDatabase();
 
   try {
-    const result = await db.collection("users").insertOne(data);
-    if (!result.acknowledged) {
-      return redirect("/register?error=Failed+to+create+user");
+    const userExists = await db.collection("users").findOne({ email: email });
+    if (!userExists) {
+      const result = await db.collection("users").insertOne(data);
+      if (!result.acknowledged) {
+        throw new AuthorizationError("Failed to create user");
+      }
+       
+      return await authenticator.authenticate("form", request, {
+        successRedirect: "/app",
+        failureRedirect: "/login",
+        context: {
+          form,
+        },
+        throwOnError: true,
+      });
     }
-
-    console.log("User successfully created:", data);
-
-    // Authenticate the user (if needed)
-    return await authenticator.authenticate("form", request, {
-      successRedirect: "/app",
-      failureRedirect: "/login",
-      context: { formData: form },
-    });
+    throw new AuthorizationError("Email already exists");
   } catch (error) {
     console.error("Error in action function:", error);
     return redirect("/register?error=Something+went+wrong");
   }
-  
 };
 
 export default function Register() {

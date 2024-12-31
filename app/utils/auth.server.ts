@@ -53,23 +53,24 @@ const googleStrategy = new GoogleStrategy(
 export { googleStrategy };
 
 const formStrategy = new FormStrategy(async ({ form }) => {
-  // const formData = await request.formData();
   const email = form.get("email") as string;
   const password = form.get("password") as string;
-
   // Basic validation
   if (!email || !password) {
     throw new Error("Email and password are required.");
   }
+  console.log("BBBBBBBBBBBBBB", email, password);
 
   // const data = { email: email, password: password };
   const { db } = await connectToDatabase();
   const userInDatabase = await db.collection("users").findOne({ email: email });
+  console.log("SSSSSSSSSSSS", userInDatabase);
 
   // const user = await findOrCreateUser(data);
   if (!userInDatabase) {
     throw new AuthorizationError();
   }
+  console.log("CCCCCCCCCC", userInDatabase);
 
   const passwordsMatch = await bcrypt.compare(
     password,
@@ -79,6 +80,8 @@ const formStrategy = new FormStrategy(async ({ form }) => {
   if (!passwordsMatch) {
     throw new AuthorizationError();
   }
+  console.log("FFFFFFFFFFFFF", userInDatabase);
+
   return userInDatabase;
 });
 authenticator.use(googleStrategy);

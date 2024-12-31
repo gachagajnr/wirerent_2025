@@ -1,11 +1,16 @@
-import { ActionFunction, } from "@remix-run/node";
+import { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { Box, Title, Stack, Text, Anchor } from "@mantine/core";
 import { authenticator } from "~/utils/auth.server";
 
 import LoginForm from "~/components/forms/login";
 
+export const loader: LoaderFunction = async ({ request }) => {
+  return await authenticator.isAuthenticated(request, {
+    successRedirect: "/app",
+   });
+};
+
 export const action: ActionFunction = async ({ request }) => {
-  console.log("RRRRRRRRRRRR", request);
   return await authenticator.authenticate("form", request, {
     successRedirect: "/app",
     failureRedirect: "/login",
