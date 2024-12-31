@@ -1,33 +1,15 @@
-import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
-import feathersClient from "~/utils/feathersClient";
+import { ActionFunction, } from "@remix-run/node";
 import { Box, Title, Stack, Text, Anchor } from "@mantine/core";
+import { authenticator } from "~/utils/auth.server";
 
 import LoginForm from "~/components/forms/login";
 
-export const loader: LoaderFunction = async () => {
-  try {
-    // Get the token from the cookie/storage first
-    const token = await feathersClient.authentication.getAccessToken();
-
-    if (!token) {
-      // If no token exists, allow access to login page
-      return null;
-    }
-
-    // Try to reauthenticate with the token
-    const res = await feathersClient.reAuthenticate();
-    console.log("Authentication successful:", res);
-    return redirect("/dashboard");
-  } catch (error) {
-    // Clear any invalid tokens
-    await feathersClient.authentication.removeAccessToken();
-    console.log("Authentication error:", error);
-    return null;
-  }
-};
-
-export const action: ActionFunction = async () => {
-  // Implement any action logic if needed
+export const action: ActionFunction = async ({ request }) => {
+  console.log("RRRRRRRRRRRR", request);
+  return await authenticator.authenticate("form", request, {
+    successRedirect: "/app",
+    failureRedirect: "/login",
+  });
 };
 
 export default function Login() {

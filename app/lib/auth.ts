@@ -1,5 +1,9 @@
 import feathersClient, { users } from "~/utils/feathersClient";
-
+export interface User {
+  id: string | number;
+  name: string;
+  avatar?: string;
+}
 export const login = async (data: Record<string, unknown>) => {
   const { email, password } = data;
   try {
@@ -32,4 +36,9 @@ export const logout = async () => {
 
 export const resetPassword = (data: Record<string, unknown>) => {
   console.log(data);
+};
+
+export const findOrCreateUser = (data: Record<string, unknown>) => {
+  console.log(data);
+  return {};
 };

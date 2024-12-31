@@ -1,15 +1,21 @@
-import { Authenticator } from "remix-auth";
+import { Authenticator, AuthorizationError } from "remix-auth";
 import { GoogleStrategy } from "remix-auth-google";
 import { sessionStorage } from "./session.server";
+import { FormStrategy } from "remix-auth-form";
+import { connectToDatabase } from "./db.server";
+import bcrypt from "bcrypt";
 
 export interface User {
-  id: string | number;
+  id: string;
   name: string;
+  email: string;
+  website?: string;
+  phone?: string;
   avatar?: string;
 }
 
 // Create an instance of the Authenticator
-export const authenticator = new Authenticator<User>(sessionStorage);
+export const authenticator = new Authenticator(sessionStorage);
 
 const requiredEnvVariables = [
   "GOOGLE_CLIENT_ID",
@@ -37,11 +43,43 @@ const googleStrategy = new GoogleStrategy(
       id,
       name: displayName,
       avatar: photos?.[0]?.value,
+      website: "",
+      phone: "",
+      email: "",
     };
   }
 );
 
 export { googleStrategy };
 
+const formStrategy = new FormStrategy(async ({ form }) => {
+  // const formData = await request.formData();
+  const email = form.get("email") as string;
+  const password = form.get("password") as string;
+
+  // Basic validation
+  if (!email || !password) {
+    throw new Error("Email and password are required.");
+  }
+
+  // const data = { email: email, password: password };
+  const { db } = await connectToDatabase();
+  const userInDatabase = await db.collection("users").findOne({ email: email });
+
+  // const user = await findOrCreateUser(data);
+  if (!userInDatabase) {
+    throw new AuthorizationError();
+  }
+
+  const passwordsMatch = await bcrypt.compare(
+    password,
+    userInDatabase.password as string
+  );
+
+  if (!passwordsMatch) {
+    throw new AuthorizationError();
+  }
+  return userInDatabase;
+});
 authenticator.use(googleStrategy);
-// authenticator.use(formStrategy, "user-pass");
+authenticator.use(formStrategy, "form");
