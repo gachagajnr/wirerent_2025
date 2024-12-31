@@ -1,4 +1,4 @@
-import { ActionFunction,LoaderFunction, redirect } from "@remix-run/node";
+import { ActionFunction, LoaderFunction } from "@remix-run/node";
 import bcrypt from "bcrypt";
 import RegisterForm from "~/components/forms/register";
 import { Box, Stack, Title, Text, Anchor, Container } from "@mantine/core";
@@ -9,7 +9,7 @@ import { AuthorizationError } from "remix-auth";
 export const loader: LoaderFunction = async ({ request }) => {
   return await authenticator.isAuthenticated(request, {
     successRedirect: "/app",
-   });
+  });
 };
 
 export const action: ActionFunction = async ({ request }) => {
@@ -33,28 +33,23 @@ export const action: ActionFunction = async ({ request }) => {
 
   const { db } = await connectToDatabase();
 
-  try {
-    const userExists = await db.collection("users").findOne({ email: email });
-    if (!userExists) {
-      const result = await db.collection("users").insertOne(data);
-      if (!result.acknowledged) {
-        throw new AuthorizationError("Failed to create user");
-      }
-       
-      return await authenticator.authenticate("form", request, {
-        successRedirect: "/app",
-        failureRedirect: "/login",
-        context: {
-          form,
-        },
-        throwOnError: true,
-      });
+  const userExists = await db.collection("users").findOne({ email: email });
+  if (!userExists) {
+    const result = await db.collection("users").insertOne(data);
+    if (!result.acknowledged) {
+      throw new AuthorizationError("Failed to create user");
     }
-    throw new AuthorizationError("Email already exists");
-  } catch (error) {
-    console.error("Error in action function:", error);
-    return redirect("/register?error=Something+went+wrong");
+
+    return await authenticator.authenticate("form", request, {
+      successRedirect: "/app",
+      failureRedirect: "/login",
+      context: {
+        form,
+      },
+      throwOnError: true,
+    });
   }
+  throw new AuthorizationError("Email already exists");
 };
 
 export default function Register() {
