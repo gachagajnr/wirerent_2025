@@ -1,10 +1,10 @@
 import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
 import feathersClient from "~/utils/feathersClient";
-import { Box, Title, Stack, Text, Anchor,   } from "@mantine/core";
+import { Box, Title, Stack, Text, Anchor } from "@mantine/core";
 
 import LoginForm from "~/components/forms/login";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async () => {
   try {
     // Get the token from the cookie/storage first
     const token = await feathersClient.authentication.getAccessToken();
@@ -26,7 +26,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action: ActionFunction = async () => {
   // Implement any action logic if needed
 };
 
@@ -47,21 +47,19 @@ export default function Login() {
         ta="center"
         mx="auto"
       >
-      
-          <Stack align="center">
-            <Title order={1}>Welcome Back</Title>
-            <LoginForm />
+        <Stack align="center">
+          <Title order={1}>Welcome Back</Title>
+          <LoginForm />
 
-            <Text size="sm" mt="sm">
-              <Anchor href="/forgot-password">Forgot your password?</Anchor>
-            </Text>
+          <Text size="sm" mt="sm">
+            <Anchor href="/forgot-password">Forgot your password?</Anchor>
+          </Text>
 
-            <Text size="sm">
-              Don&apos;t have an account?{" "}
-              <Anchor href="/register">Register</Anchor>
-            </Text>
-          </Stack>
-     
+          <Text size="sm">
+            Don&apos;t have an account?{" "}
+            <Anchor href="/register">Sign up</Anchor>
+          </Text>
+        </Stack>
       </Box>
     </Box>
   );

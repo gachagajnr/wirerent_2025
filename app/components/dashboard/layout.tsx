@@ -1,29 +1,27 @@
-import { Link } from "@remix-run/react";
+import { AppShell, Burger } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardLayout() {
+  const [opened, { toggle }] = useDisclosure();
+
   return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/dashboard/agencies">Agencies</Link>
-          </li>
-          <li>
-            <Link to="/dashboard/blocks">Blocks</Link>
-          </li>
-          <li>
-            <Link to="/dashboard/units">Units</Link>
-          </li>
-          <li>
-            <Link to="/dashboard/user">Profile</Link>
-          </li>
-        </ul>
-      </nav>
-      <main>{children}</main>
-    </div>
+    <AppShell
+      header={{ height: 60 }}
+      navbar={{
+        width: 300,
+        breakpoint: "sm",
+        collapsed: { mobile: !opened },
+      }}
+      padding="md"
+    >
+      <AppShell.Header>
+        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+        <div>Logo</div>
+      </AppShell.Header>
+
+      <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
+
+      <AppShell.Main>Main</AppShell.Main>
+    </AppShell>
   );
 }

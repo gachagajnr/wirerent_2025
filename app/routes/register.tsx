@@ -9,27 +9,20 @@ export default function Register() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-         padding: "1rem",
+        padding: "1rem",
       }}
     >
       <Container size="xs">
-      <Stack align="center">
-          <Title  order={1}  >
-            Create an account
-          </Title>
+        <Stack align="center">
+          <Title order={1}>Create an account</Title>
           <RegisterForm />
 
-          <Text size="sm"   mt="sm">
-            <Anchor href="/forgot-password" color="purple.5">
-              Forgot your password?
-            </Anchor>
+          <Text size="sm" mt="sm">
+            <Anchor href="/forgot-password">Forgot your password?</Anchor>
           </Text>
 
-          <Text size="sm" >
-            Already have an account?{" "}
-            <Anchor href="/login" color="purple.5">
-              Sign in
-            </Anchor>
+          <Text size="sm">
+            Already have an account? <Anchor href="/login">Log in</Anchor>
           </Text>
         </Stack>
       </Container>

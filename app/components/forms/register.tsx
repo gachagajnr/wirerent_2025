@@ -127,7 +127,7 @@ const RegisterForm: React.FC<RegisterFormProps> = () => {
         />
 
         <Group justify="flex-end" mt="md">
-          <Button type="submit">Register</Button>
+          <Button type="submit">Sign up</Button>
         </Group>
       </form>
     </Box>

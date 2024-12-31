@@ -55,7 +55,7 @@ export default function LoginForm() {
         />
 
         <Group justify="flex-end" mt="md">
-          <Button type="submit">Sign in</Button>
+          <Button type="submit">Log in</Button>
         </Group>
       </form>
     </Box>

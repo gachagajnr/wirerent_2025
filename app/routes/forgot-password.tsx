@@ -18,7 +18,7 @@ export default function ForgotPassword() {
           <ForgotPasswordForm />
 
           <Text size="sm">
-            Already have an account? <Anchor href="/login">Sign in</Anchor>
+            Already have an account? <Anchor href="/login">Log in</Anchor>
           </Text>
         </Stack>
       </Container>
