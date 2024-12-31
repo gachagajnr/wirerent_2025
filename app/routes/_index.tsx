@@ -10,8 +10,11 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="flex flex-col justify-between w-full h-screen">
-      <Navbar />
+    <div className="flex flex-col w-full h-screen">
+      <Navbar className="fixed top-0 left-0 w-full z-50" />
+      <main className="flex-grow mt-[60px] overflow-auto">
+        {/* Your main content goes here */}
+      </main>
       <Footer />
     </div>
   );

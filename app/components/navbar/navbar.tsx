@@ -65,7 +65,7 @@ const mockdata = [
   },
 ];
 
-export default function Navbar() {
+export default function Navbar({ className }: { className: string })  {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
@@ -90,7 +90,7 @@ export default function Navbar() {
   ));
 
   return (
-    <Box pb={120}>
+    <Box pb={120}  className={`  ${className}`}>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
           Wirerent
