@@ -1,8 +1,10 @@
 "use client"
+import { redirect } from "@remix-run/node";  
 
 import { useForm } from "react-hook-form";
 import { HiLockClosed, HiMail } from 'react-icons/hi';
- import { Field } from "~/components/ui/field"
+import { Field } from "~/components/ui/field"
+ 
 import {
   Input,
   Button,
@@ -10,11 +12,11 @@ import {
 } from "@chakra-ui/react";
 import { InputGroup } from "~/components/ui/input-group";
 
-// import { login } from "@/lib/auth";
+import { login } from "~/lib/auth";
 import { useState } from "react";
  
- export default function LoginForm() {
-    const {
+export default function LoginForm() {
+     const {
       register,
       handleSubmit,
       formState: { errors },
@@ -31,16 +33,15 @@ import { useState } from "react";
       
     };
     try {
-      // const {user} = await login(
-      //   body.email,body.password
-      // );
-      // console.log("USER", user);
+      const {user} = await login(
+        body.email,body.password
+      );
+      console.log("USER", user);
 
-      // setUser(user);
-      // router.push("/dashboard");
+       return redirect("/dashboard");
     } catch (e:any) {
       console.log("LOGIN ERROR", e);
-      // setError(e.toString());
+      setError(e.toString());
 
     }
     };

@@ -1,41 +1,40 @@
 import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
-import { json } from "@remix-run/node";
 import feathersClient from "~/utils/feathersClient";
 import { Box, Heading, Stack, Text, Link } from "@chakra-ui/react";
 
 import LoginForm from "~/components/forms/login";
- 
+
 export const loader: LoaderFunction = async ({ request }) => {
-   try {
-    await feathersClient.reAuthenticate();
-    return redirect("/dashboard"); 
+  try {
+    // Get the token from the cookie/storage first
+    const token = await feathersClient.authentication.getAccessToken();
+    
+    if (!token) {
+      // If no token exists, allow access to login page
+      return null;
+    }
+
+    // Try to reauthenticate with the token
+    const res = await feathersClient.reAuthenticate();
+    console.log("Authentication successful:", res);
+    return redirect("/dashboard");
   } catch (error) {
-    return null;  
+    // Clear any invalid tokens
+    await feathersClient.authentication.removeAccessToken();
+    console.log("Authentication error:", error);
+    return null;
   }
 };
 
 export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-
-  try {
-    const response = await feathersClient.authenticate({
-      strategy: "local",
-      email,
-      password,
-    });
-    return redirect("/dashboard");
-  } catch (error) {
-    return json({ error: "Invalid login credentials" }, { status: 401 });
-  }
+  
 };
 
 export default function Login() {
     return (
  
-            <Box
-                minH="100vh"
+    <Box
+      minH="100vh"
       display="flex"
       alignItems="center"
       justifyContent="center"
