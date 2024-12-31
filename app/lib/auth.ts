@@ -1,6 +1,6 @@
 import feathersClient, { users } from "~/utils/feathersClient";
 
-export const login = async (data: object) => {
+export const login = async (data: Record<string, unknown>) => {
   const { email, password } = data;
   try {
     const response = await feathersClient.authenticate({
@@ -30,6 +30,6 @@ export const logout = async () => {
   await feathersClient.logout();
 };
 
-export const resetPassword = (data: any) => {
-  console.log(data)
+export const resetPassword = (data: Record<string, unknown>) => {
+  console.log(data);
 };
