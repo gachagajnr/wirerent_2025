@@ -1,9 +1,9 @@
 import { Link, Outlet } from "@remix-run/react";
-export default function Units() {
+export default function Admins() {
   return (
     <div>
-      Units Page
-      <Link to="/app/units/4">Unit 4</Link>
+      Admins Page
+      <Link to="/app/admins/4">Admin 4</Link>
       <Outlet />
     </div>
   );
