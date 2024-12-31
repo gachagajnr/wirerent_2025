@@ -1,3 +1,5 @@
+import "@mantine/core/styles.css";
+
 import {
   Links,
   Meta,
@@ -6,7 +8,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import { Provider } from "~/components/ui/provider";
+import { ColorSchemeScript, MantineProvider,  } from "@mantine/core";
 
 import "./tailwind.css";
 
@@ -31,9 +33,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <ColorSchemeScript />
       </head>
       <body>
-        {children}
+        <MantineProvider>
+          {/* <Container size="responsive" bg="white"> */}
+            {children}
+          {/* </Container> */}
+        </MantineProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -42,7 +49,5 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Provider>
-  <Outlet />
-  </Provider>
+  return <Outlet />;
 }

@@ -1,44 +1,38 @@
 import RegisterForm from "~/components/forms/register";
-import { Box, Heading, Stack, Text, Link } from "@chakra-ui/react";
+import { Box, Stack, Title, Text, Anchor, Container } from "@mantine/core";
 
 export default function Register() {
   return (
     <Box
-      minH="100vh"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      bgGradient="linear(to-l, #7928CA, #FF0080)"
-      p={4}
-      data-state="open"
-      _open={{
-        animationName: "fade-in, scale-in",
-        animationDuration: "300ms",
-      }}
-      _closed={{
-        animationName: "fade-out, scale-out",
-        animationDuration: "120ms",
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+         padding: "1rem",
       }}
     >
-      <Stack>
-        <Heading as="h1" size="xl" textAlign="center" color="purple.600">
-          Create an account
-        </Heading>
-        <RegisterForm />
+      <Container size="xs">
+      <Stack align="center">
+          <Title  order={1}  >
+            Create an account
+          </Title>
+          <RegisterForm />
 
-        <Text fontSize="sm" mt={3} textAlign="center">
-          <Link color="purple.500" href="/forgot-password">
-            Forgot your password?
-          </Link>
-        </Text>
+          <Text size="sm"   mt="sm">
+            <Anchor href="/forgot-password" color="purple.5">
+              Forgot your password?
+            </Anchor>
+          </Text>
 
-        <Text fontSize="sm" textAlign="center">
-          Already have an account?{" "}
-          <Link color="purple.500" href="/login">
-            Sign in
-          </Link>
-        </Text>
-      </Stack>
+          <Text size="sm" >
+            Already have an account?{" "}
+            <Anchor href="/login" color="purple.5">
+              Sign in
+            </Anchor>
+          </Text>
+        </Stack>
+      </Container>
     </Box>
   );
 }

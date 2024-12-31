@@ -1,6 +1,7 @@
 import feathersClient, { users } from "~/utils/feathersClient";
 
-export const login = async (email:string, password:string) => {
+export const login = async (data: object) => {
+  const { email, password } = data;
   try {
     const response = await feathersClient.authenticate({
       strategy: "local",
@@ -14,20 +15,21 @@ export const login = async (email:string, password:string) => {
   }
 };
 
-
-export const createAccount =async (data:Object) => {
-    try {
+export const createAccount = async (data: object) => {
+  try {
     const response = await users.create(data);
-    return response
-    } catch (error) {
+    return response;
+  } catch (error) {
     console.error("Create account error:", error);
 
-    throw error
-    }
-}
+    throw error;
+  }
+};
 
 export const logout = async () => {
   await feathersClient.logout();
 };
 
-
+export const resetPassword = (data: any) => {
+  console.log(data)
+};

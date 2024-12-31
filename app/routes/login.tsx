@@ -1,6 +1,6 @@
 import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
 import feathersClient from "~/utils/feathersClient";
-import { Box, Heading, Stack, Text, Link } from "@chakra-ui/react";
+import { Box, Title, Stack, Text, Anchor,   } from "@mantine/core";
 
 import LoginForm from "~/components/forms/login";
 
@@ -8,7 +8,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   try {
     // Get the token from the cookie/storage first
     const token = await feathersClient.authentication.getAccessToken();
-    
+
     if (!token) {
       // If no token exists, allow access to login page
       return null;
@@ -27,48 +27,42 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export const action: ActionFunction = async ({ request }) => {
-  
+  // Implement any action logic if needed
 };
 
 export default function Login() {
-    return (
- 
+  return (
     <Box
-      minH="100vh"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      bgGradient="linear(to-l, #7928CA, #FF0080)"
-      p={4}
-      data-state="open"
-      _open={{
-        animationName: "fade-in, scale-in",
-        animationDuration: "300ms",
-      }}
-      _closed={{
-        animationName: "fade-out, scale-out",
-        animationDuration: "120ms",
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "1rem",
       }}
     >
-      <Stack>
-        <Heading as="h1" size="3xl" textAlign="center" color="purple.600">
-          Welcome Back
-        </Heading>
-        <LoginForm />
+      <Box
+        w={{ base: 400, sm: 400, lg: 500 }}
+        py={{ base: "xs", sm: "md", lg: "xl" }}
+        ta="center"
+        mx="auto"
+      >
+      
+          <Stack align="center">
+            <Title order={1}>Welcome Back</Title>
+            <LoginForm />
 
-        <Text fontSize="sm" mt={3} textAlign="center">
-          <Link color="purple.500" href="/forgot-password">
-            Forgot your password?
-          </Link>
-        </Text>
+            <Text size="sm" mt="sm">
+              <Anchor href="/forgot-password">Forgot your password?</Anchor>
+            </Text>
 
-        <Text fontSize="sm" textAlign="center">
-          Don't have an account?{" "}
-          <Link color="purple.500" href="/register">
-            Register
-          </Link>
-        </Text>
-      </Stack>
-            </Box>
-   )
+            <Text size="sm">
+              Don&apos;t have an account?{" "}
+              <Anchor href="/register">Register</Anchor>
+            </Text>
+          </Stack>
+     
+      </Box>
+    </Box>
+  );
 }

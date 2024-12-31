@@ -1,38 +1,27 @@
 import ForgotPasswordForm from "~/components/forms/forgot-password";
-import { Box, Heading, Stack, Text, Link } from "@chakra-ui/react";
+import { Box, Stack, Title, Text, Anchor, Container } from "@mantine/core";
 
 export default function ForgotPassword() {
   return (
     <Box
-      minH="100vh"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      bgGradient="linear(to-l, #7928CA, #FF0080)"
-      p={4}
-      data-state="open"
-      _open={{
-        animationName: "fade-in, scale-in",
-        animationDuration: "300ms",
-      }}
-      _closed={{
-        animationName: "fade-out, scale-out",
-        animationDuration: "120ms",
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "1rem",
       }}
     >
-      <Stack>
-        <Heading as="h1" size="xl" textAlign="center" color="purple.600">
-          Reset Password
-        </Heading>
-        <ForgotPasswordForm />
+      <Container size="xs">
+        <Stack align="center">
+          <Title order={1}>Reset password</Title>
+          <ForgotPasswordForm />
 
-        <Text fontSize="sm" mt={4} textAlign="center">
-          Already have an account?{" "}
-          <Link color="purple.500" href="/login">
-            Sign in
-          </Link>
-        </Text>
-      </Stack>
+          <Text size="sm">
+            Already have an account? <Anchor href="/login">Sign in</Anchor>
+          </Text>
+        </Stack>
+      </Container>
     </Box>
   );
 }
