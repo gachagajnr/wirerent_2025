@@ -50,6 +50,7 @@ export default function Login() {
         <Stack align="center">
           <Title order={1}>Welcome Back</Title>
           <LoginForm />
+          <a href="/auth/google">Login with Google</a>
 
           <Text size="sm" mt="sm">
             <Anchor href="/forgot-password">Forgot your password?</Anchor>
