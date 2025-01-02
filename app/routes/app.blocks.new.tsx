@@ -1,8 +1,9 @@
 import { Link } from "@remix-run/react";
 import { Title } from "@mantine/core";
+import BlockForm from "~/components/forms/block";
 import { HiArrowLeft } from "react-icons/hi";
 
-export default function Block() {
+export default function NewBlock() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row gap-4 items-center">
@@ -12,9 +13,9 @@ export default function Block() {
         >
           <HiArrowLeft />
         </Link>
-        <Title order={4}>Block Detail</Title>
+        <Title order={4}>New Block</Title>
       </div>
-      {/* <BlockForm /> */}
+      <BlockForm />
     </div>
   );
 }

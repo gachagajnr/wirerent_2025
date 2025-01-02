@@ -13,7 +13,7 @@ export default function Index() {
   return (
     <div className="flex flex-col w-full h-screen">
       <Navbar className="fixed top-0 left-0 w-full z-50" />
-      <main className="flex-grow mt-[60px] overflow-auto">Content </main>
+      <main className="flex-grow mt-[60px] overflow-auto">Content</main>
       <Footer />
     </div>
   );
