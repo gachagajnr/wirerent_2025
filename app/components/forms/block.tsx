@@ -13,12 +13,13 @@ const BlockForm = () => {
           spacing={{ base: 4, sm: "md" }}
           verticalSpacing={{ base: "xs", sm: "sm" }}
         >
-          <TextInput name="name" withAsterisk label="Name" placeholder="Name" />
+          <TextInput name="name" type="text" withAsterisk label="Name" placeholder="Name" />
 
           <TextInput
             name="location"
             withAsterisk
             label="Location"
+            type="text"
             leftSection={<HiLocationMarker />}
             placeholder="Town/City"
           />
