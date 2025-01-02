@@ -1,6 +1,7 @@
-import { Pill } from "@mantine/core";
-import { Link } from "@remix-run/react";
+
+import { Link} from "@remix-run/react";
 import type { FC } from "react";
+ 
 import {
   HiLocationMarker,
   HiHome,
@@ -24,14 +25,15 @@ type BlockProps = {
 };
 
 const Block: FC<BlockProps> = ({ block }) => {
+
   return (
-    <div className="card bg-base-100 w-80 shadow-lg rounded-lg p-4">
+    <div className="card bg-base-100 hover:bg-base-300 hover:cursor-pointer w-80 shadow-lg rounded-lg p-4">
       <div className="flex justify-between items-center">
         <Link
           to={`/app/blocks/${block._id?.toString()}`}
-          className="font-semibold    hover:font-bold"
+          className="  text-accent "
         >
-          <Pill>{block.name}</Pill>
+          <div className="badge badge-neutral">{block.name}</div>
         </Link>
 
         <Link

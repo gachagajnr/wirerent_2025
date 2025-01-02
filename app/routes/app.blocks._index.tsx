@@ -1,9 +1,10 @@
-import { Title } from "@mantine/core";
+import { Title,TextInput } from "@mantine/core";
 import { Link, useLoaderData } from "@remix-run/react";
 import { connectToDatabase } from "~/utils/db.server";
 import { LoaderFunction } from "@remix-run/node";
 import { authenticator } from "../utils/auth.server";
 import Block, { BlockData } from "~/components/block/block";
+import {  HiSearch } from "react-icons/hi";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await authenticator.isAuthenticated(request, {
@@ -40,6 +41,12 @@ export default function Blocks() {
           New
         </Link>
       </div>
+      <TextInput
+        leftSectionPointerEvents="none"
+        leftSection={<HiSearch />}
+        label=""
+        placeholder=" Search"
+      />
       <div className="flex flex-row flex-wrap justify-center sm:justify-center lg:justify-start gap-3">
         {blocks.length === 0 ? (
           <p className="text-gray-500 italic">{`You made no resolutions for the year ${year}!`}</p>
