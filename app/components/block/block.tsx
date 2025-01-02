@@ -1,12 +1,11 @@
-
-import { Link} from "@remix-run/react";
+import { Link } from "@remix-run/react";
 import type { FC } from "react";
- 
+
 import {
   HiLocationMarker,
   HiHome,
   HiPhone,
-  HiOutlineArrowRight,
+  HiPlusCircle,
 } from "react-icons/hi";
 
 export interface BlockData {
@@ -25,7 +24,6 @@ type BlockProps = {
 };
 
 const Block: FC<BlockProps> = ({ block }) => {
-
   return (
     <div className="card bg-base-100 hover:bg-base-200 hover:cursor-pointer w-80 shadow-lg rounded-lg p-4">
       <div className="flex justify-between items-center">
@@ -36,14 +34,15 @@ const Block: FC<BlockProps> = ({ block }) => {
           <div className="badge badge-neutral rounded-sm">{block.name}</div>
         </Link>
 
-        <Link
-          to={`/app/blocks/${block._id}`}
-          className="btn-circle text-primary px-3 rounded-md font-semibold"
-        >
-          <HiOutlineArrowRight />
-        </Link>
+        <div className="flex flex-row gap-2 items-center">
+          <Link
+            to={`/app/blocks/${block._id}/new`}
+            className="flex flex-row items-center gap-1   text-info btn-xs  "
+          >
+            <HiPlusCircle /> Unit
+          </Link>
+        </div>
       </div>
-
 
       <div className="flex flex-row flex-wrap items-center mt-1 space-x-2">
         <p className="flex flex-row items-center gap-2 text-sm text-secondary">
@@ -56,7 +55,6 @@ const Block: FC<BlockProps> = ({ block }) => {
           <strong>Floors:</strong> {block.floors}
         </p>
       </div>
-
 
       {(block.contact_1 || block.contact_2 || block.contact_3) && (
         <div className="flex flex-row items-center flex-wrap mt-1 space-x-2">

@@ -1,5 +1,5 @@
 import { Outlet, Link, Form } from "@remix-run/react";
-import { FaBuilding, FaHeadset, FaHome, FaSuperpowers } from "react-icons/fa";
+import {  FaBuilding, FaHeadset, FaHome, FaModx, FaSuperpowers } from "react-icons/fa";
 import { HiLogout } from "react-icons/hi";
 import { User } from "~/utils/auth.server";
 
@@ -97,6 +97,12 @@ export default function DashboardLayout({ user }: DashboardLayoutProps) {
               <Link to="/app/admins">
                 <FaSuperpowers />
                 Admins
+              </Link>
+            </li>
+            <li>
+              <Link to="/app/admins">
+                <FaModx />
+                Settings
               </Link>
             </li>
             <li>
