@@ -27,13 +27,13 @@ type BlockProps = {
 const Block: FC<BlockProps> = ({ block }) => {
 
   return (
-    <div className="card bg-base-100 hover:bg-base-300 hover:cursor-pointer w-80 shadow-lg rounded-lg p-4">
+    <div className="card bg-base-100 hover:bg-base-200 hover:cursor-pointer w-80 shadow-lg rounded-lg p-4">
       <div className="flex justify-between items-center">
         <Link
           to={`/app/blocks/${block._id?.toString()}`}
           className="  text-accent "
         >
-          <div className="badge badge-neutral">{block.name}</div>
+          <div className="badge badge-neutral rounded-sm">{block.name}</div>
         </Link>
 
         <Link
@@ -44,9 +44,9 @@ const Block: FC<BlockProps> = ({ block }) => {
         </Link>
       </div>
 
-      {/* Details: Location, Units, and Floors */}
+
       <div className="flex flex-row flex-wrap items-center mt-1 space-x-2">
-        <p className="flex flex-row items-center gap-2 text-sm text-gray-700">
+        <p className="flex flex-row items-center gap-2 text-sm text-secondary">
           <HiLocationMarker /> {block.location}
         </p>
         <p className="flex flex-row items-center gap-2 text-sm text-gray-700">
@@ -57,7 +57,7 @@ const Block: FC<BlockProps> = ({ block }) => {
         </p>
       </div>
 
-      {/* Contact Info */}
+
       {(block.contact_1 || block.contact_2 || block.contact_3) && (
         <div className="flex flex-row items-center flex-wrap mt-1 space-x-2">
           <p className="flex flex-row items-center gap-2 text-sm text-gray-700">

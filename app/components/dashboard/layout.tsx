@@ -1,5 +1,6 @@
 import { Outlet, Link, Form } from "@remix-run/react";
 import { FaBuilding, FaHeadset, FaHome, FaSuperpowers } from "react-icons/fa";
+import { HiLogout } from "react-icons/hi";
 import { User } from "~/utils/auth.server";
 
 interface DashboardLayoutProps {
@@ -37,7 +38,7 @@ export default function DashboardLayout({ user }: DashboardLayoutProps) {
         </div>
         <div className="flex-1">
           <Link to="/" className="btn btn-ghost text-xl normal-case">
-           <FaHeadset/> Wirerent
+            <FaHeadset /> Wirerent
           </Link>
         </div>
         <div className="flex-none hidden lg:flex">
@@ -67,31 +68,24 @@ export default function DashboardLayout({ user }: DashboardLayoutProps) {
       {/* Drawer and Content */}
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content border p-4 flex flex-col">
-         
-         
+        <div className="drawer-content border mb-6 mx-6 rounded-xl p-4 flex flex-col">
           <div className="p-4">
             <Outlet />
           </div>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side top-auto z-10  ">
           <div
             onClick={() => document.getElementById("my-drawer-2")?.click()}
             className="drawer-overlay"
             aria-hidden="true"
           ></div>
 
-          <ul className="menu min-h-full w-60 bg-white p-4">
+          <ul className="menu lg:relative z-[1] mt-3  lg:top-0 sm:absolute sm:top-2  sm:left-0   w-52 border  ml-4 rounded-xl bg-white p-4">
             <li>
-              {/* <div className="flex flex-row justify-between"> */}
               <Link to="/app/blocks">
                 <FaBuilding />
                 Blocks
               </Link>
-              {/* <Link to="/app/blocks/new" className="btn btn-primary btn-xs">
-               + New
-              </Link> */}
-              {/* </div> */}
             </li>
             <li>
               <Link to="/app/units">
@@ -101,20 +95,22 @@ export default function DashboardLayout({ user }: DashboardLayoutProps) {
             </li>
             <li>
               <Link to="/app/admins">
-              <FaSuperpowers/>
-              Admins</Link>
+                <FaSuperpowers />
+                Admins
+              </Link>
             </li>
-
-            <Form method="post">
-              <button
-                type="submit"
-                name="action"
-                value="logout"
-                className="btn btn-error btn-sm text-white"
-              >
-                Logout
-              </button>
-            </Form>
+            <li>
+              <Form method="post">
+                <button
+                  type="submit"
+                  name="action"
+                  value="logout"
+                  className="btn btn-ghost btn-sm text-error"
+                >
+                  <HiLogout /> Logout
+                </button>
+              </Form>
+            </li>
           </ul>
         </div>
       </div>

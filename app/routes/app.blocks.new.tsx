@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { Title } from "@mantine/core";
+import { Title, Paper } from "@mantine/core";
 import BlockForm from "~/components/forms/block";
 import { HiArrowLeft } from "react-icons/hi";
 import {
@@ -107,8 +107,10 @@ export default function NewBlock() {
         </Link>
         <Title order={4}>New Block</Title>
       </div>
-    
-      <BlockForm />
+
+      <Paper shadow="xs" radius="xs" p="xl" maw={550}>
+        <BlockForm />
+      </Paper>
     </div>
   );
 }
