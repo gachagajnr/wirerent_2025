@@ -2,7 +2,14 @@ import { Form, useActionData, useNavigation } from "@remix-run/react";
 
 import { HiPhone, HiLocationMarker, HiHome } from "react-icons/hi";
 
-import { Button, TextInput, Group, SimpleGrid, Box } from "@mantine/core";
+import {
+  Button,
+  TextInput,
+  Group,
+  SimpleGrid,
+  Box,
+  Textarea,
+} from "@mantine/core";
 import { action } from "~/routes/app/route";
 
 const BlockForm = () => {
@@ -81,33 +88,52 @@ const BlockForm = () => {
             }
           />
         </SimpleGrid>
-        <TextInput
-          name="contact_1"
-          withAsterisk
-          type="phone"
-          label="Contact 1"
-          leftSection={<HiPhone />}
-          placeholder="07*******"
+        <Textarea
+          name="amenities"
+          placeholder="Amenities"
+          label="Amenities"
+          autosize
+          minRows={2}
           error={
-            actionData?.errors?.contact_1 ? (
-              <em>{actionData?.errors.contact_1}</em>
+            actionData?.errors?.amenities ? (
+              <em>{actionData?.errors.amenities}</em>
             ) : null
           }
         />
+        <SimpleGrid
+          cols={{ base: 1, sm: 2, lg: 2 }}
+          spacing={{ base: 4, sm: "md" }}
+          verticalSpacing={{ base: "xs", sm: "sm" }}
+        >
+          <TextInput
+            name="contact_1"
+            withAsterisk
+            type="phone"
+            label="Contact 1"
+            leftSection={<HiPhone />}
+            placeholder="07*******"
+            error={
+              actionData?.errors?.contact_1 ? (
+                <em>{actionData?.errors.contact_1}</em>
+              ) : null
+            }
+          />
 
-        <TextInput
-          name="contact_2"
-          withAsterisk
-          type="phone"
-          label="Contact 2"
-          leftSection={<HiPhone />}
-          placeholder="07*******"
-          error={
-            actionData?.errors?.contact_2 ? (
-              <em>{actionData?.errors.contact_2}</em>
-            ) : null
-          }
-        />
+          <TextInput
+            name="contact_2"
+            withAsterisk
+            type="phone"
+            label="Contact 2"
+            leftSection={<HiPhone />}
+            placeholder="07*******"
+            error={
+              actionData?.errors?.contact_2 ? (
+                <em>{actionData?.errors.contact_2}</em>
+              ) : null
+            }
+          />
+        </SimpleGrid>
+
         <TextInput
           name="contact_3"
           withAsterisk

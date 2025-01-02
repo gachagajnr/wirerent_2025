@@ -23,21 +23,22 @@ export const loader: LoaderFunction = async ({ request }) => {
   } else {
     blocks = await db.collection("blocks").find({}).toArray();
   }
+  const data = JSON.parse(JSON.stringify(blocks));
 
-  return { user, year, blocks };
+  return { user, year, data };
 };
 
 export default function Blocks() {
-  const { user, year, blocks } = useLoaderData<typeof loader>();
-  console.log("USER IS", user);
+  const blocks = useLoaderData<typeof loader>();
+  // console.log("USER IS", user);
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row justify-between  gap-4">
         <div className="flex flex-row justify-start items-center gap-2">
           <Title order={5}>Blocks</Title>
-          <Title order={5}>({blocks.length})</Title>
+          <Title order={5}>({blocks.data.length})</Title>
         </div>
-        <Link to="/app/blocks/new" className="btn btn-primary btn-sm">
+        <Link to="/app/blocks/new" className="btn btn-primary text-white btn-sm">
           New
         </Link>
       </div>
@@ -48,10 +49,10 @@ export default function Blocks() {
         placeholder=" Search"
       />
       <div className="flex flex-row flex-wrap justify-center sm:justify-center lg:justify-start gap-3">
-        {blocks.length === 0 ? (
-          <p className="text-gray-500 italic">{`You made no resolutions for the year ${year}!`}</p>
+        {blocks.data.length === 0 ? (
+          <p className="text-gray-500 italic">{`You have added 0 blocks`}</p>
         ) : (
-          blocks.map((block: BlockData) => {
+           blocks.data.map((block: BlockData) => {
             return <Block key={block._id} block={block} />;
           })
         )}

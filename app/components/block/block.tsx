@@ -29,9 +29,9 @@ const Block: FC<BlockProps> = ({ block }) => {
       <div className="flex justify-between items-center">
         <Link
           to={`/app/blocks/${block._id?.toString()}`}
-          className="  text-accent "
+          className=" text-primary-content font-semibold border   p-1.5 rounded-box "
         >
-          <div className="badge badge-neutral rounded-sm">{block.name}</div>
+          <div className="  rounded-sm">{block.name}</div>
         </Link>
 
         <div className="flex flex-row gap-2 items-center">

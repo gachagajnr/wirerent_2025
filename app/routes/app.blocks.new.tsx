@@ -28,6 +28,7 @@ export const action: ActionFunction = async ({
   const location = form.get("location") as string;
   const floors = form.get("floors") as string;
   const units = form.get("units") as string;
+  const amenities = form.get("amenities") as string;
   const contact_1 = form.get("contact_1") as string;
   const contact_2 = form.get("contact_2") as string;
   const contact_3 = form.get("contact_3") as string;
@@ -37,6 +38,7 @@ export const action: ActionFunction = async ({
     location: "",
     floors: "",
     units: "",
+    amenities: "",
     contact_1: "",
     contact_2: "",
     contact_3: "",
@@ -52,6 +54,10 @@ export const action: ActionFunction = async ({
 
   if (!floors) {
     errors.floors = "Floors is Required";
+  }
+
+  if (!amenities) {
+    errors.amenities = "Floors is Required";
   }
 
   if (!units) {
@@ -102,7 +108,7 @@ export default function NewBlock() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row gap-4 items-center">
-        <Link to="/app/blocks" className="btn    btn-sm">
+        <Link to="/app/blocks" className="btn  btn-circle  btn-sm">
           <HiArrowLeft />
         </Link>
         <Title order={4}>New Block</Title>

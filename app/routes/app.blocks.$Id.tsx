@@ -8,7 +8,7 @@ export default function Block() {
       <div className="flex flex-row gap-4 items-center">
         <Link
           to="/app/blocks"
-          className="btn    btn-sm"
+          className="btn  btn-circle  btn-sm"
         >
           <HiArrowLeft />
         </Link>
