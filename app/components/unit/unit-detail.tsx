@@ -1,8 +1,14 @@
 import { Link } from "@remix-run/react";
 import type { FC } from "react";
 
-import { HiArrowSmRight, HiHome, HiOfficeBuilding } from "react-icons/hi";
+import {
+  HiArrowSmRight,
+  HiClock,
+  HiHome,
+  HiOfficeBuilding,
+} from "react-icons/hi";
 import { BlockData } from "../block/block";
+import { TenantData } from "../tenant/tenant";
 
 export interface UnitData {
   _id?: string;
@@ -10,10 +16,12 @@ export interface UnitData {
   type: string;
   rent: number;
   block: BlockData;
+  tenant: TenantData;
   floor: number;
   contact_1?: number;
   contact_2?: number;
   contact_3?: number;
+  startDate?: string;
 }
 
 type UnitProps = {
@@ -44,6 +52,11 @@ const UnitDetail: FC<UnitProps> = ({ unit }) => {
           <HiArrowSmRight /> {unit.type}
         </p>
       </div>
+      {unit.startDate && (
+        <p className="flex flex-row justify-end items-center mt-1 gap-2 text-sm ">
+          <HiClock  className="text-accent"/> Tenant Since: {unit.startDate}
+        </p>
+      )}
     </div>
   );
 };

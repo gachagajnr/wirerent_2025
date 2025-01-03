@@ -1,11 +1,12 @@
 import { Link, useLoaderData } from "@remix-run/react";
 import { Title } from "@mantine/core";
-import { HiArrowLeft } from "react-icons/hi";
+import { HiArrowLeft, HiChat, HiMail, HiPhone } from "react-icons/hi";
 import { connectToDatabase } from "~/utils/db.server";
 import { LoaderFunction } from "@remix-run/node";
 import { authenticator } from "~/utils/auth.server";
 import { ObjectId } from "mongodb";
 import UnitDetail from "~/components/unit/unit-detail";
+import TenantCard from "~/components/tenant/tenant-card";
 
 // export const loader = async ({ params }: UnitProps) => {
 //   const unit = await getContact(params.contactId);
@@ -35,8 +36,22 @@ export const loader: LoaderFunction = async ({ request, params }) => {
         },
       },
       {
+        $lookup: {
+          from: "tenants",
+          localField: "tenantId",
+          foreignField: "_id",
+          as: "tenant",
+        },
+      },
+      {
         $unwind: {
           path: "$block",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $unwind: {
+          path: "$tenant",
           preserveNullAndEmptyArrays: true,
         },
       },
@@ -50,7 +65,6 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
 export default function Unit() {
   const response = useLoaderData<typeof loader>();
-
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row gap-4 items-center">
@@ -66,9 +80,27 @@ export default function Unit() {
           <UnitDetail unit={response.unit} />
         </div>
         <div className="w-full lg:w-2/5 md:w-2/5 sm:w-full">
-          <div className="card flex flex-col p-4 border rounded-lg">
+          <div className="card flex flex-col p-4  border rounded-lg">
             <Title order={4}>Tenant</Title>
-            <div>Tenant details</div>
+            {response.unit.tenant ? (
+              <div className="flex flex-col gap-1.5">
+                <TenantCard tenant={response.unit.tenant} />
+                <Title order={4} >Actions</Title>
+                <div className="flex flex-row gap-2 items-center p-2">
+                  <div className="btn btn-circle btn-sm">
+                    <HiMail />
+                  </div>
+                  <div className="btn btn-circle btn-sm">
+                    <HiPhone />
+                  </div>
+                  <div className="btn btn-circle btn-sm">
+                    <HiChat />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link to="">Assign Tenant</Link>
+            )}
           </div>
         </div>
       </div>
