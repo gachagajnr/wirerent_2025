@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData, Outlet } from "@remix-run/react";
 import { Title } from "@mantine/core";
 import { HiArrowLeft, HiChat, HiMail, HiPhone } from "react-icons/hi";
 import { connectToDatabase } from "~/utils/db.server";
@@ -76,8 +76,9 @@ export default function Unit() {
         </Title>
       </div>
       <div className="flex flex-col lg:flex-row md:flex-row sm:flex-col  gap-4">
-        <div className="w-full lg:w-3/5 md:w-3/5 sm:w-full">
+        <div className="flex flex-col gap-2 w-full lg:w-3/5 md:w-3/5 sm:w-full">
           <UnitDetail unit={response.unit} />
+          <Title order={4}>History</Title>
         </div>
         <div className="w-full lg:w-2/5 md:w-2/5 sm:w-full">
           <div className="card flex flex-col p-4  border rounded-lg">
@@ -85,18 +86,29 @@ export default function Unit() {
             {response.unit.tenant ? (
               <div className="flex flex-col gap-1.5">
                 <TenantCard tenant={response.unit.tenant} />
-                <Title order={4} >Actions</Title>
+
+                <Title order={4}>Actions</Title>
                 <div className="flex flex-row gap-2 items-center p-2">
-                  <div className="btn btn-circle btn-sm">
+                  <Link
+                    to="mail"
+                    className="btn btn-circle btn-sm"
+                    title="Send Mail"
+                  >
                     <HiMail />
-                  </div>
+                  </Link>
                   <div className="btn btn-circle btn-sm">
                     <HiPhone />
                   </div>
-                  <div className="btn btn-circle btn-sm">
+                  <Link
+                    to="sms"
+                    className="btn btn-circle btn-sm"
+                    title="Send Sms"
+                  >
                     <HiChat />
-                  </div>
+                  </Link>
                 </div>
+                <Outlet />
+
               </div>
             ) : (
               <Link to="">Assign Tenant</Link>

@@ -9,6 +9,7 @@ import {
 } from "react-icons/hi";
 import { BlockData } from "../block/block";
 import { TenantData } from "../tenant/tenant";
+import { formatDate } from "~/helpers/formatters";
 
 export interface UnitData {
   _id?: string;
@@ -54,7 +55,7 @@ const UnitDetail: FC<UnitProps> = ({ unit }) => {
       </div>
       {unit.startDate && (
         <p className="flex flex-row justify-end items-center mt-1 gap-2 text-sm ">
-          <HiClock  className="text-accent"/> Tenant Since: {unit.startDate}
+          <HiClock  className="text-accent"/> Tenant Since: {formatDate(unit.startDate)}
         </p>
       )}
     </div>

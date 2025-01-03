@@ -6,7 +6,7 @@
     "**/.server/**/*.tsx",
     "**/.client/**/*.ts",
     "**/.client/**/*.tsx"
-, "app/routes/app/app/index.tsx", "global.d.ts"  ],
+, "app/routes/app/app/index.tsx", "global.d.ts", "app/routes/app.units.$Id.mail.tsx"  ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "types": ["@remix-run/node", "vite/client"],
