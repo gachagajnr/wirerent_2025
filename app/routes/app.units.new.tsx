@@ -12,6 +12,7 @@ import {
 
 import { connectToDatabase } from "~/utils/db.server";
 import { authenticator } from "~/utils/auth.server";
+import { ObjectId } from "mongodb";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await authenticator.isAuthenticated(request, {
@@ -40,50 +41,44 @@ export const action: ActionFunction = async ({
 }: ActionFunctionArgs) => {
   // try {
   const form = await request.clone().formData();
+  const blockId = form.get("blockId") as string;
   const name = form.get("name") as string;
-  const location = form.get("location") as string;
-  const floors = form.get("floors") as string;
-  const units = form.get("units") as string;
-  const contact_1 = form.get("contact_1") as string;
-  const contact_2 = form.get("contact_2") as string;
-  const contact_3 = form.get("contact_3") as string;
+  const floor = form.get("floor") as string;
+  const type = form.get("type") as string;
+  const rent = form.get("rent") as string;
+  const amenities = form.get("amenities") as string;
 
   const errors = {
+    blockId: "",
     name: "",
-    location: "",
-    floors: "",
-    units: "",
-    contact_1: "",
-    contact_2: "",
-    contact_3: "",
+    floor: "",
+    type: "",
+    rent: "",
+    amenities: "",
   };
 
+  if (!blockId) {
+    errors.blockId = "Block is Required";
+  }
+
   if (!name) {
-    errors.name = "Name is Required";
+    errors.name = "House Number is Required";
   }
 
-  if (!location) {
-    errors.location = "Location is Required";
+  if (!floor) {
+    errors.floor = "Floor is Required";
   }
 
-  if (!floors) {
-    errors.floors = "Floors is Required";
+  if (!type) {
+    errors.type = "Unit type is Required";
   }
 
-  if (!units) {
-    errors.units = "No of units is Required";
+  if (!rent) {
+    errors.rent = "Rent amount is required";
   }
 
-  if (!/^\d{10}$/.test(contact_1)) {
-    errors.contact_1 = "Phone should be exactly 10 digits";
-  }
-
-  if (!/^\d{10}$/.test(contact_2)) {
-    errors.contact_2 = "Phone should be exactly 10 digits";
-  }
-
-  if (!/^\d{10}$/.test(contact_3)) {
-    errors.contact_3 = "Phone should be exactly 10 digits";
+  if (!amenities) {
+    errors.amenities = "Unit amenities are required";
   }
 
   if (Object.values(errors).some((error) => error !== "")) {
@@ -92,31 +87,32 @@ export const action: ActionFunction = async ({
 
   const data = {
     name: name,
-    location: location,
-    units: Number(units),
-    floors: Number(floors),
-    contact_1: Number(contact_1),
-    contact_2: Number(contact_2),
-    contact_3: Number(contact_3),
+    blockId: new ObjectId(blockId),
+    type: type,
+    floor: Number(floor),
+    rent: Number(rent),
+    amenities: amenities,
   };
 
   const { db } = await connectToDatabase();
 
-  const blockExists = await db.collection("blocks").findOne({ name: name });
+  const blockExists = await db
+    .collection("units")
+    .findOne({ name: name, _id: { $ne: new ObjectId(blockId) } });
   if (!blockExists) {
-    const result = await db.collection("blocks").insertOne(data);
+    const result = await db.collection("units").insertOne(data);
 
     if (!result.acknowledged) {
-      throw new Error("Failed to create block");
+      throw new Error("Failed to create unit");
     }
-    return redirect("/app/blocks");
+    return redirect("/app/units");
   }
-  throw new Error("Block with name already exists");
+  throw new Error("Unit with name already exists");
 };
 
 export default function NewUnit() {
   const blocks = useLoaderData<typeof loader>();
- 
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row gap-4 items-center">
