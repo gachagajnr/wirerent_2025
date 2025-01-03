@@ -20,7 +20,7 @@ type UnitProps = {
   unit: UnitData;
 };
 
-const Block: FC<UnitProps> = ({ unit }) => {
+const Unit: FC<UnitProps> = ({ unit }) => {
   return (
     <div className="card bg-base-100 hover:bg-base-200 hover:cursor-pointer w-80 shadow-lg rounded-lg p-4">
       <div className="flex justify-between items-center">
@@ -66,4 +66,4 @@ const Block: FC<UnitProps> = ({ unit }) => {
   );
 };
 
-export default Block;
+export default Unit;

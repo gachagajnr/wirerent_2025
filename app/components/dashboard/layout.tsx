@@ -11,7 +11,7 @@ export default function DashboardLayout({ user }: DashboardLayoutProps) {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Navbar */}
-      <div className="navbar bg-white  sticky top-0 z-10">
+      <div className="navbar bg-white  sticky top-0 z-40">
         <div className="flex-none lg:hidden">
           {/* Drawer toggle for small screens */}
 

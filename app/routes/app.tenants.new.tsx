@@ -1,6 +1,6 @@
 import { Link, useLoaderData } from "@remix-run/react";
 import { Title, Paper } from "@mantine/core";
-import UnitForm from "~/components/forms/unit";
+import TenantForm from "~/components/forms/tenant";
 import { HiArrowLeft } from "react-icons/hi";
 import {
   ActionFunction,
@@ -29,7 +29,19 @@ export const loader: LoaderFunction = async ({ request }) => {
   if (yearFilter) {
     blocks = await db.collection("blocks").find({}).toArray();
   } else {
-    blocks = await db.collection("blocks").find({}).toArray();
+    blocks = await db
+      .collection("blocks")
+      .aggregate([
+        {
+          $lookup: {
+            from: "units",
+            localField: "_id",
+            foreignField: "blockId",
+            as: "units",
+          },
+        },
+      ])
+      .toArray();
   }
   const data = JSON.parse(JSON.stringify(blocks));
 
@@ -39,46 +51,60 @@ export const loader: LoaderFunction = async ({ request }) => {
 export const action: ActionFunction = async ({
   request,
 }: ActionFunctionArgs) => {
-  // try {
+
   const form = await request.clone().formData();
   const blockId = form.get("blockId") as string;
-  const name = form.get("name") as string;
-  const floor = form.get("floor") as string;
-  const type = form.get("type") as string;
-  const rent = form.get("rent") as string;
-  const amenities = form.get("amenities") as string;
+  const unitId = form.get("unitId") as string;
+  const firstName = form.get("firstName") as string;
+  const lastName = form.get("lastName") as string;
+  const idNumber = form.get("idNumber") as string;
+  const phone = form.get("phone") as string;
+  const email = form.get("email") as string;
+  const paymentDue = form.get("paymentDue") as string;
+  const notes = form.get("notes") as string;
 
   const errors = {
     blockId: "",
-    name: "",
-    floor: "",
-    type: "",
-    rent: "",
-    amenities: "",
+    unitId: "",
+    firstName: "",
+    lastName: "",
+    idNumber: "",
+    phone: "",
+    email: "",
+    paymentDue: "",
+    notes: "",
   };
 
   if (!blockId) {
     errors.blockId = "Block is Required";
   }
 
-  if (!name) {
-    errors.name = "House Number is Required";
+  if (!firstName) {
+    errors.firstName = "First name is Required";
   }
 
-  if (!floor) {
-    errors.floor = "Floor is Required";
+  if (!lastName) {
+    errors.lastName = "Last name is Required";
   }
 
-  if (!type) {
-    errors.type = "Unit type is Required";
+  if (!idNumber) {
+    errors.idNumber = "ID Number is Required";
   }
 
-  if (!rent) {
-    errors.rent = "Rent amount is required";
+  if (!/^\d{10}$/.test(phone)) {
+    errors.phone = "Phone is Required";
   }
 
-  if (!amenities) {
-    errors.amenities = "Unit amenities are required";
+  if (!email) {
+    errors.email = "Email address is required";
+  }
+
+  if (!notes) {
+    errors.notes = "Notes is required";
+  }
+
+  if (!paymentDue) {
+    errors.paymentDue = "Payment due date required";
   }
 
   if (Object.values(errors).some((error) => error !== "")) {
@@ -86,28 +112,31 @@ export const action: ActionFunction = async ({
   }
 
   const data = {
-    name: name,
     blockId: new ObjectId(blockId),
-    type: type,
-    floor: Number(floor),
-    rent: Number(rent),
-    amenities: amenities,
+    unitId: new ObjectId(unitId),
+    firstName: firstName,
+    lastName: lastName,
+    idNumber: idNumber,
+    phone: Number(phone),
+    email: email,
+    paymentDue: Number(paymentDue),
+    notes: notes,
   };
 
   const { db } = await connectToDatabase();
 
-  const blockExists = await db
-    .collection("units")
-    .findOne({ name: name, blockId: new ObjectId(blockId) });
-  if (!blockExists) {
-    const result = await db.collection("units").insertOne(data);
+  const tenantExists = await db
+    .collection("tenants")
+    .findOne({ idNumber: idNumber, phone: phone });
+  if (!tenantExists) {
+    const result = await db.collection("tenants").insertOne(data);
 
     if (!result.acknowledged) {
-      throw new Error("Failed to create unit");
+      throw new Error("Failed to create tenant");
     }
-    return redirect("/app/units");
+    return redirect("/app/tenants");
   }
-  throw new Error("Unit with name already exists");
+  throw new Error("Tenant already already exists");
 };
 
 export default function NewTenant() {
@@ -116,14 +145,14 @@ export default function NewTenant() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row gap-4 items-center">
-        <Link to="/app/blocks" className="btn btn-circle   btn-sm">
+        <Link to="/app/tenants" className="btn btn-circle   btn-sm">
           <HiArrowLeft />
         </Link>
-        <Title order={4}>New Unit</Title>
+        <Title order={4}>New Tenant</Title>
       </div>
 
       <Paper shadow="xs" radius="xs" p="xl" maw={550}>
-        <UnitForm blocks={blocks.data} />
+        <TenantForm blocks={blocks.data} />
       </Paper>
     </div>
   );

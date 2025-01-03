@@ -116,7 +116,7 @@ export default function NewUnit() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row gap-4 items-center">
-        <Link to="/app/blocks" className="btn btn-circle   btn-sm">
+        <Link to="/app/units" className="btn btn-circle   btn-sm">
           <HiArrowLeft />
         </Link>
         <Title order={4}>New Unit</Title>

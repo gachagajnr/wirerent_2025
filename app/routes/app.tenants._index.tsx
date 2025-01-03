@@ -4,7 +4,7 @@ import { LoaderFunction } from "@remix-run/node";
 import { authenticator } from "~/utils/auth.server";
 import { connectToDatabase } from "~/utils/db.server";
 import { HiSearch } from "react-icons/hi";
-import Unit, { UnitData } from "~/components/unit/unit";
+import Tenant, { TenantData } from "~/components/tenant/tenant";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await authenticator.isAuthenticated(request, {
@@ -20,8 +20,16 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   if (yearFilter) {
     data = await db
-      .collection("units")
+      .collection("tenants")
       .aggregate([
+        {
+          $lookup: {
+            from: "units",
+            localField: "unitId",
+            foreignField: "_id",
+            as: "unit",
+          },
+        },
         {
           $lookup: {
             from: "blocks",
@@ -31,6 +39,9 @@ export const loader: LoaderFunction = async ({ request }) => {
           },
         },
 
+        {
+          $unwind: "$unit",
+        },
         {
           $unwind: "$block",
         },
@@ -38,8 +49,16 @@ export const loader: LoaderFunction = async ({ request }) => {
       .toArray();
   } else {
     data = await db
-      .collection("units")
+      .collection("tenants")
       .aggregate([
+        {
+          $lookup: {
+            from: "units",
+            localField: "unitId",
+            foreignField: "_id",
+            as: "unit",
+          },
+        },
         {
           $lookup: {
             from: "blocks",
@@ -50,14 +69,17 @@ export const loader: LoaderFunction = async ({ request }) => {
         },
 
         {
+          $unwind: "$unit",
+        },
+        {
           $unwind: "$block",
         },
       ])
       .toArray();
   }
-  const units = JSON.parse(JSON.stringify(data));
+  const tenants = JSON.parse(JSON.stringify(data));
 
-  return { user, year, units };
+  return { user, year, tenants };
 };
 
 export default function Tenants() {
@@ -67,7 +89,10 @@ export default function Tenants() {
     <div className="flex flex-col gap-4">
       <div className="flex flex-row justify-between  gap-4">
         <Title order={3}>Tenants</Title>
-        <Link to="/app/units/new" className="btn btn-primary text-white btn-sm">
+        <Link
+          to="/app/tenants/new"
+          className="btn btn-primary text-white btn-sm"
+        >
           New
         </Link>
       </div>
@@ -79,11 +104,11 @@ export default function Tenants() {
         placeholder=" Search"
       />
       <div className="flex flex-row flex-wrap justify-center sm:justify-center lg:justify-start gap-3">
-        {data.units.length === 0 ? (
+        {data.tenants.length === 0 ? (
           <p className="text-gray-500 italic">{`You have added 0 units`}</p>
         ) : (
-          data.units.map((unit: UnitData) => {
-            return <Unit key={unit._id} unit={unit} />;
+          data.tenants.map((tenant: TenantData) => {
+            return <Tenant key={tenant._id} tenant={tenant} />;
           })
         )}
       </div>
