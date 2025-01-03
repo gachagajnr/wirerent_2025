@@ -1,5 +1,5 @@
 import { Form, useActionData, useNavigation } from "@remix-run/react";
-import { HiCurrencyDollar } from "react-icons/hi";
+import { HiChartPie, HiCurrencyDollar } from "react-icons/hi";
 import {
   Button,
   TextInput,
@@ -122,6 +122,19 @@ const UnitForm = ({ blocks }: UnitFormProps) => {
             }
           />
         </SimpleGrid>
+        <TextInput
+            name="meterNo"
+            withAsterisk
+            type="number"
+            label="Token Meter Nuumber"
+            leftSection={<HiChartPie />}
+            placeholder="Token Meter Number"
+            error={
+              actionData?.errors?.meterNo ? (
+                <em>{actionData?.errors.meterNo}</em>
+              ) : null
+            }
+          />
         <Textarea
           name="amenities"
           placeholder="Amenities"

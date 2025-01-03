@@ -1,11 +1,8 @@
-import { Title, TextInput } from "@mantine/core";
-import { Link, useLoaderData } from "@remix-run/react";
-import { connectToDatabase } from "~/utils/db.server";
+import { Title } from "@mantine/core";
+ import { connectToDatabase } from "~/utils/db.server";
 import { LoaderFunction } from "@remix-run/node";
 import { authenticator } from "../utils/auth.server";
-import Block, { BlockData } from "~/components/block/block";
-import { HiSearch } from "react-icons/hi";
-
+ 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await authenticator.isAuthenticated(request, {
     failureRedirect: "/login",
@@ -28,39 +25,25 @@ export const loader: LoaderFunction = async ({ request }) => {
   return { user, year, data };
 };
 
-export default function Blocks() {
-  const blocks = useLoaderData<typeof loader>();
+export default function Dashboard() {
   // console.log("USER IS", user);
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row justify-between  gap-4">
         <div className="flex flex-row justify-start items-center gap-2">
-          <div className="flex gap-2 items-center flex-1">
-            <Title order={4}>Blocks ({blocks.data.length})</Title>
-            <TextInput
-              leftSectionPointerEvents="none"
-              leftSection={<HiSearch />}
-              label=""
-              placeholder=" Search"
-            />
-          </div>
+          <Title order={5}>Dashboard</Title>
         </div>
-        <Link
-          to="/app/blocks/new"
-          className="btn btn-primary text-white btn-sm"
-        >
-          New
-        </Link>
+       
       </div>
-
+      
       <div className="flex flex-row flex-wrap justify-center sm:justify-center lg:justify-start gap-3">
-        {blocks.data.length === 0 ? (
+        {/* {blocks.data.length === 0 ? (
           <p className="text-gray-500 italic">{`You have added 0 blocks`}</p>
         ) : (
           blocks.data.map((block: BlockData) => {
             return <Block key={block._id} block={block} />;
           })
-        )}
+        )} */}
       </div>
       {/* <Outlet /> */}
     </div>

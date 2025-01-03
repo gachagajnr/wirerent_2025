@@ -40,6 +40,21 @@ export const loader: LoaderFunction = async ({ request }) => {
             as: "units",
           },
         },
+        {
+          $project: {
+            _id: 1,
+            name: 1,
+            location: 1,
+            // Include only units where isOccupied is false
+            units: {
+              $filter: {
+                input: "$units",
+                as: "unit",
+                cond: { $eq: ["$$unit.isOccupied", false] },
+              },
+            },
+          },
+        },
       ])
       .toArray();
   }
@@ -133,6 +148,17 @@ export const action: ActionFunction = async ({
     if (!result.acknowledged) {
       throw new Error("Failed to create tenant");
     }
+
+    await db.collection("units").findOneAndUpdate(
+      { _id: new ObjectId(unitId) },
+      {
+        $set: {
+          isOccupied: true,
+          tenantId: result.insertedId,
+          startDate: new Date(),
+        },
+      }
+    );
     return redirect("/app/tenants");
   }
   throw new Error("Tenant already already exists");

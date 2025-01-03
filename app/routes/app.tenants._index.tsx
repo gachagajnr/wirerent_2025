@@ -88,7 +88,15 @@ export default function Tenants() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row justify-between  gap-4">
-        <Title order={3}>Tenants</Title>
+        <div className="flex gap-2 items-center flex-1">
+          <Title order={4}>Tenants</Title>
+          <TextInput
+            leftSectionPointerEvents="none"
+            leftSection={<HiSearch />}
+            label=""
+            placeholder=" Search"
+          />
+        </div>{" "}
         <Link
           to="/app/tenants/new"
           className="btn btn-primary text-white btn-sm"
@@ -97,12 +105,6 @@ export default function Tenants() {
         </Link>
       </div>
 
-      <TextInput
-        leftSectionPointerEvents="none"
-        leftSection={<HiSearch />}
-        label=""
-        placeholder=" Search"
-      />
       <div className="flex flex-row flex-wrap justify-center sm:justify-center lg:justify-start gap-3">
         {data.tenants.length === 0 ? (
           <p className="text-gray-500 italic">{`You have added 0 units`}</p>

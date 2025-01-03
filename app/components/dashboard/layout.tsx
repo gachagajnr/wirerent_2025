@@ -68,7 +68,7 @@ export default function DashboardLayout({ user }: DashboardLayoutProps) {
       {/* Drawer and Content */}
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content border mb-6 mx-6 rounded-xl p-4 flex flex-col">
+        <div className="drawer-content  mb-6 mx-6 rounded-xl p-4 flex flex-col">
           <div className="p-4">
             <Outlet />
           </div>

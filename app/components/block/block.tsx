@@ -29,7 +29,7 @@ const Block: FC<BlockProps> = ({ block }) => {
       <div className="flex justify-between items-center">
         <Link
           to={`/app/blocks/${block._id?.toString()}`}
-          className=" text-primary-content font-semibold border   p-1.5 rounded-box "
+          className=" text-primary-content font-semibold text-sm "
         >
           <div className="  rounded-sm">{block.name}</div>
         </Link>

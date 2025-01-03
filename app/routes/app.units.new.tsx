@@ -45,6 +45,7 @@ export const action: ActionFunction = async ({
   const name = form.get("name") as string;
   const floor = form.get("floor") as string;
   const type = form.get("type") as string;
+  const meterNo = form.get("meterNo") as string;
   const rent = form.get("rent") as string;
   const amenities = form.get("amenities") as string;
 
@@ -53,6 +54,7 @@ export const action: ActionFunction = async ({
     name: "",
     floor: "",
     type: "",
+    meterNo: "",
     rent: "",
     amenities: "",
   };
@@ -69,12 +71,20 @@ export const action: ActionFunction = async ({
     errors.floor = "Floor is Required";
   }
 
+  if (!/^\d{11}$/.test(meterNo)) {
+    errors.meterNo = "Meter Number is Required";
+  }
+
   if (!type) {
     errors.type = "Unit type is Required";
   }
 
   if (!rent) {
     errors.rent = "Rent amount is required";
+  }
+
+  if (!meterNo) {
+    errors.meterNo = "Meter Number is required";
   }
 
   if (!amenities) {
@@ -91,7 +101,9 @@ export const action: ActionFunction = async ({
     type: type,
     floor: Number(floor),
     rent: Number(rent),
+    meterNo: Number(meterNo),
     amenities: amenities,
+    isOccupied: false,
   };
 
   const { db } = await connectToDatabase();
