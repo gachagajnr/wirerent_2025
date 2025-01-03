@@ -97,6 +97,11 @@ const TenantForm = ({ blocks }: UnitFormProps) => {
             label="First name"
             leftSection={<HiUser />}
             placeholder="First name"
+            error={
+              actionData?.errors?.firstName ? (
+                <em>{actionData?.errors.firstName}</em>
+              ) : null
+            }
           />
 
           <TextInput
@@ -105,6 +110,11 @@ const TenantForm = ({ blocks }: UnitFormProps) => {
             label="Last name"
             leftSection={<HiUser />}
             placeholder="Last name"
+            error={
+              actionData?.errors?.lastName ? (
+                <em>{actionData?.errors.lastName}</em>
+              ) : null
+            }
           />
         </SimpleGrid>
         <TextInput
@@ -113,6 +123,11 @@ const TenantForm = ({ blocks }: UnitFormProps) => {
           label="ID Number"
           leftSection={<HiDocument />}
           placeholder="ID Number"
+          error={
+            actionData?.errors?.idNumber ? (
+              <em>{actionData?.errors.idNumber}</em>
+            ) : null
+          }
         />
         <SimpleGrid
           cols={{ base: 1, sm: 2, lg: 2 }}
@@ -126,8 +141,8 @@ const TenantForm = ({ blocks }: UnitFormProps) => {
             label="Phone number"
             placeholder="Phone number"
             error={
-              actionData?.errors?.name ? (
-                <em>{actionData?.errors.name}</em>
+              actionData?.errors?.phone ? (
+                <em>{actionData?.errors.phone}</em>
               ) : null
             }
           />
@@ -139,8 +154,8 @@ const TenantForm = ({ blocks }: UnitFormProps) => {
             type="email"
             placeholder="Email address"
             error={
-              actionData?.errors?.floor ? (
-                <em>{actionData?.errors.floor}</em>
+              actionData?.errors?.email ? (
+                <em>{actionData?.errors.email}</em>
               ) : null
             }
           />
@@ -150,6 +165,11 @@ const TenantForm = ({ blocks }: UnitFormProps) => {
           type="number"
           label="Rent Due Date"
           placeholder="Rent Due Date"
+          error={
+            actionData?.errors?.paymentDue ? (
+              <em>{actionData?.errors.paymentDue}</em>
+            ) : null
+          }
         />
         <Textarea
           name="notes"

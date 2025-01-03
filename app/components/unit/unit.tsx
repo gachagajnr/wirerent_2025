@@ -1,8 +1,15 @@
 import { Link } from "@remix-run/react";
 import type { FC } from "react";
 
-import { HiArrowSmRight, HiUserAdd, HiUser } from "react-icons/hi";
+import {
+  HiArrowSmRight,
+  HiUserAdd,
+  HiUser,
+  HiLocationMarker,
+  HiOfficeBuilding,
+} from "react-icons/hi";
 import { BlockData } from "../block/block";
+import { TenantData } from "../tenant/tenant";
 
 export interface UnitData {
   _id?: string;
@@ -10,6 +17,7 @@ export interface UnitData {
   type: string;
   rent: number;
   block: BlockData;
+  tenant: TenantData;
   floor: number;
   meterNo: number;
   isOccupied: boolean;
@@ -29,9 +37,21 @@ const Unit: FC<UnitProps> = ({ unit }) => {
         >
           {unit.name}
         </Link>
-        <div className="mt-1 text-info text-xs">KES {unit.rent}</div>
+        <div className="flex flex-col">
+          <div className="mt-1 text-info text-xs">KES {unit.rent}</div>
+          {unit.tenant && (
+            <div className="text-warnning text-xs">
+              Due {unit.tenant.paymentDue}
+            </div>
+          )}
+        </div>{" "}
       </div>
-      <div className="mt-1  text-xs">{unit.block.name}</div>
+      <div className="mt-1 flex flex-row gap-1 items-center  text-xs">
+        {" "}
+        <HiOfficeBuilding />
+        {unit.block.name} <HiLocationMarker />
+        {unit.block.location}
+      </div>
       {unit.meterNo && (
         <div className="mt-1 text-black text-xs">Mtr No: {unit.meterNo}</div>
       )}
@@ -42,13 +62,13 @@ const Unit: FC<UnitProps> = ({ unit }) => {
           <HiArrowSmRight /> {unit.type}
         </p>
       </div>
-      {unit.isOccupied ? (
+      {unit.isOccupied && unit.tenant ? (
         <Link
-          to="/app/tenants/${unit.tenant}"
-          className="flex flex-row items-center flex-1 text-primary  justify-end btn btn-sm btn-ghost"
+          to={`/app/tenants/${unit.tenant._id}`}
+          className="flex flex-row items-center flex-1 text-primary  justify-end btn btn-xs btn-ghost"
         >
           <HiUser />
-          Tenant
+          {unit.tenant.firstName} {unit.tenant.lastName}
         </Link>
       ) : (
         <Link

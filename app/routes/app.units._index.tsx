@@ -30,9 +30,26 @@ export const loader: LoaderFunction = async ({ request }) => {
             as: "block",
           },
         },
+        {
+          $lookup: {
+            from: "tenants",
+            localField: "tenantId",
+            foreignField: "_id",
+            as: "tenant",
+          },
+        },
 
         {
-          $unwind: "$block",
+          $unwind: {
+            path: "$block",
+            preserveNullAndEmptyArrays: true, // Keep units without associated blocks
+          },
+        },
+        {
+          $unwind: {
+            path: "$tenant",
+            preserveNullAndEmptyArrays: true, // Keep units without associated tenants
+          },
         },
       ])
       .toArray();
@@ -48,9 +65,26 @@ export const loader: LoaderFunction = async ({ request }) => {
             as: "block",
           },
         },
+        {
+          $lookup: {
+            from: "tenants",
+            localField: "tenantId",
+            foreignField: "_id",
+            as: "tenant",
+          },
+        },
 
         {
-          $unwind: "$block",
+          $unwind: {
+            path: "$block",
+            preserveNullAndEmptyArrays: true,  
+          },
+        },
+        {
+          $unwind: {
+            path: "$tenant",
+            preserveNullAndEmptyArrays: true,  
+          },
         },
       ])
       .toArray();
