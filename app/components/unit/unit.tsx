@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 import type { FC } from "react";
 
-import { HiArrowSmRight } from "react-icons/hi";
+import { HiArrowSmRight, HiUserAdd } from "react-icons/hi";
 import { BlockData } from "../block/block";
 
 export interface UnitData {
@@ -30,7 +30,7 @@ const Block: FC<UnitProps> = ({ unit }) => {
         >
           <div className="  rounded-sm">{unit.name}</div>
         </Link>
-        <div className="mt-1 text-primary text-xs">KES {unit.rent}</div>
+        <div className="mt-1 text-info text-xs">KES {unit.rent}</div>
       </div>
       <div className="mt-1  text-xs">{unit.block.name}</div>
 
@@ -42,10 +42,10 @@ const Block: FC<UnitProps> = ({ unit }) => {
           <HiArrowSmRight /> {unit.type}
         </p>
         <Link
-          to=""
-          className="flex flex-1 text-info  justify-end btn-ghost btn-sm"
+          to={`/app/units/${unit._id}`}
+          className="flex flex-1 text-primary  justify-end btn btn-ghost"
         >
-          View
+          <HiUserAdd />
         </Link>
       </div>
 
