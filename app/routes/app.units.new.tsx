@@ -98,7 +98,7 @@ export const action: ActionFunction = async ({
 
   const blockExists = await db
     .collection("units")
-    .findOne({ name: name, _id: { $ne: new ObjectId(blockId) } });
+    .findOne({ name: name, blockId: new ObjectId(blockId) });
   if (!blockExists) {
     const result = await db.collection("units").insertOne(data);
 

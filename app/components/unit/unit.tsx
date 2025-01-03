@@ -1,14 +1,7 @@
 import { Link } from "@remix-run/react";
 import type { FC } from "react";
 
-import {
-  HiArrowSmRight,
-  HiCurrencyDollar,
-  // HiLocationMarker,
-  // HiHome,
-  // HiPhone,
-  HiPlusCircle,
-} from "react-icons/hi";
+import { HiArrowSmRight } from "react-icons/hi";
 import { BlockData } from "../block/block";
 
 export interface UnitData {
@@ -37,29 +30,23 @@ const Block: FC<UnitProps> = ({ unit }) => {
         >
           <div className="  rounded-sm">{unit.name}</div>
         </Link>
-
-        <div className="flex flex-row gap-2 items-center">
-          <Link
-            to={`/app/blocks/${unit._id}/new`}
-            className="flex flex-row items-center gap-1   text-info btn-xs  "
-          >
-            <HiPlusCircle /> Unit
-          </Link>
-        </div>
+        <div className="mt-1 text-primary text-xs">KES {unit.rent}</div>
       </div>
-      <div className="mt-1  text-sm">{unit.block.name}</div>
-
+      <div className="mt-1  text-xs">{unit.block.name}</div>
 
       <div className="flex flex-row flex-wrap items-center mt-1 space-x-2">
-        <p className="flex flex-row items-center gap-2 text-sm text-secondary">
-          <HiArrowSmRight /> {unit.type}
-        </p>
-        <p className="flex flex-row items-center gap-2 text-sm text-gray-700">
-          <HiCurrencyDollar /> {unit.rent}
-        </p>
         <p className="text-sm text-gray-700">
           <strong>Floor:</strong> {unit.floor}
         </p>
+        <p className="flex flex-row items-center gap-2 text-sm text-secondary">
+          <HiArrowSmRight /> {unit.type}
+        </p>
+        <Link
+          to=""
+          className="flex flex-1 text-info  justify-end btn-ghost btn-sm"
+        >
+          View
+        </Link>
       </div>
 
       {/* {(block.contact_1 || block.contact_2 || block.contact_3) && (
