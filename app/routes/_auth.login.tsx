@@ -7,7 +7,7 @@ import LoginForm from "~/components/forms/login";
 export const loader: LoaderFunction = async ({ request }) => {
   return await authenticator.isAuthenticated(request, {
     successRedirect: "/app",
-   });
+  });
 };
 
 export const action: ActionFunction = async ({ request }) => {

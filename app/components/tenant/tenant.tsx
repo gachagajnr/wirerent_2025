@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 import type { FC } from "react";
 
-import { HiArrowSmRight, HiDocument, HiHome, HiOfficeBuilding, HiPhone, HiUserAdd } from "react-icons/hi";
+import { HiArrowCircleRight, HiArrowSmRight, HiDocument, HiHome, HiOfficeBuilding, HiPhone,  } from "react-icons/hi";
 import { BlockData } from "../block/block";
 import { UnitData } from "../unit/unit";
 
@@ -58,7 +58,7 @@ const Tenant: FC<TenantProps> = ({ tenant }) => {
           to={`/app/units/${tenant.unit._id}`}
           className="flex flex-1 text-primary  justify-end btn btn-ghost"
         >
-          <HiUserAdd />
+          <HiArrowCircleRight />
         </Link>
       </div>
 

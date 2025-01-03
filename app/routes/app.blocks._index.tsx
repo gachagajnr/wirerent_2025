@@ -1,10 +1,10 @@
-import { Title,TextInput } from "@mantine/core";
+import { Title, TextInput } from "@mantine/core";
 import { Link, useLoaderData } from "@remix-run/react";
 import { connectToDatabase } from "~/utils/db.server";
 import { LoaderFunction } from "@remix-run/node";
 import { authenticator } from "../utils/auth.server";
 import Block, { BlockData } from "~/components/block/block";
-import {  HiSearch } from "react-icons/hi";
+import { HiSearch } from "react-icons/hi";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await authenticator.isAuthenticated(request, {
@@ -38,7 +38,10 @@ export default function Blocks() {
           <Title order={5}>Blocks</Title>
           <Title order={5}>({blocks.data.length})</Title>
         </div>
-        <Link to="/app/blocks/new" className="btn btn-primary text-white btn-sm">
+        <Link
+          to="/app/blocks/new"
+          className="btn btn-primary text-white btn-sm"
+        >
           New
         </Link>
       </div>
@@ -52,7 +55,7 @@ export default function Blocks() {
         {blocks.data.length === 0 ? (
           <p className="text-gray-500 italic">{`You have added 0 blocks`}</p>
         ) : (
-           blocks.data.map((block: BlockData) => {
+          blocks.data.map((block: BlockData) => {
             return <Block key={block._id} block={block} />;
           })
         )}

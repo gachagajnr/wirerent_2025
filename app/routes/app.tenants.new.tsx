@@ -51,7 +51,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 export const action: ActionFunction = async ({
   request,
 }: ActionFunctionArgs) => {
-
   const form = await request.clone().formData();
   const blockId = form.get("blockId") as string;
   const unitId = form.get("unitId") as string;
