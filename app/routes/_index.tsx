@@ -14,28 +14,32 @@ export default function Index() {
     <div className="flex flex-col w-full h-screen">
       <Navbar className="fixed top-0 left-0 w-full z-50 bg-white" />
       <main className=" ">
-        <div className="hero min-h-screen bg-gradient-to-br ">
+        <div className="hero min-h-screen bg-gradient-to-br">
           <div className="hero-content text-center">
             <div className="max-w-md">
-              <h1 className="text-5xl font-bold">Transform Your Home Today!</h1>
+              <h1 className="text-5xl font-bold">
+                Lawn Care Made Simple – Your Lawn, Our Priority
+              </h1>
               <p className="py-6">
-                Reliable solutions for plumbing, landscaping, and security
-                systems. Let&apos;s make your home safer and more beautiful!
+                Transform your lawn into a lush, green oasis with our
+                subscription-based lawn mowing services. We offer tailored plans
+                for regular maintenance to ensure your lawn stays pristine – all
+                year round, hassle-free.
               </p>
               <a href="#services" className="btn btn-accent">
-                Explore Services
+                Explore Our Plans
               </a>
             </div>
           </div>
         </div>
-        <section id="trusted" className="py-16 bg-gray-50">
+
+        {/* <section id="trusted" className="py-16 bg-gray-50">
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold mb-12 text-gray-900">
               Trusted by Leading Companies
             </h2>
             <div className="flex justify-center items-center flex-wrap gap-12">
-              {/* Logo 1 */}
-              <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
+               <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
                 <img
                   src="https://via.placeholder.com/150"
                   alt="Company Logo"
@@ -43,8 +47,7 @@ export default function Index() {
                 />
               </div>
 
-              {/* Logo 2 */}
-              <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
+               <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
                 <img
                   src="https://via.placeholder.com/150"
                   alt="Company Logo"
@@ -52,8 +55,7 @@ export default function Index() {
                 />
               </div>
 
-              {/* Logo 3 */}
-              <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
+               <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
                 <img
                   src="https://via.placeholder.com/150"
                   alt="Company Logo"
@@ -61,8 +63,7 @@ export default function Index() {
                 />
               </div>
 
-              {/* Logo 4 */}
-              <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
+               <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
                 <img
                   src="https://via.placeholder.com/150"
                   alt="Company Logo"
@@ -70,8 +71,7 @@ export default function Index() {
                 />
               </div>
 
-              {/* Logo 5 */}
-              <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
+               <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
                 <img
                   src="https://via.placeholder.com/150"
                   alt="Company Logo"
@@ -79,8 +79,7 @@ export default function Index() {
                 />
               </div>
 
-              {/* Logo 6 */}
-              <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
+               <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
                 <img
                   src="https://via.placeholder.com/150"
                   alt="Company Logo"
@@ -89,15 +88,111 @@ export default function Index() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section id="services" className="py-16 bg-gray-50">
           <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-8 text-gray-900">
-              Our Services
+            <h2 className="text-2xl uppercase font-semibold mb-8 text-gray-700">
+              Get Started Quickly
             </h2>
-            <div className="flex flex-wrap justify-center gap-16">
+            <div className="flex  justify-center gap-16">
               {/* Lawn Management & Mowing Section */}
+              <div className="w-full  max-w-4xl text-left p-6">
+                <div className="mb-6 flex items-center">
+                  <div className="w-16 h-16 bg-blue-600 rounded-full text-white flex items-center justify-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-8 h-8"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M16 2H6C5.44772 2 5 2.44772 5 3V17C5 17.5523 5.44772 18 6 18H18C18.5523 18 19 17.5523 19 17V7L16 2Z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-4xl font-bold text-gray-900 ml-4">
+                    Easy & Simple Onboarding
+                  </h3>
+                </div>
+                <p className="text-lg text-gray-700 mb-4">
+                  We offer subscription-based lawn care services to keep your
+                  lawn looking pristine. Choose from monthly, quarterly, or
+                  yearly plans based on your needs.
+                </p>
+                <ul className="text-gray-700 list-disc list-inside mb-6">
+                  <li>Flexible subscription packages</li>
+                  <li>Regular mowing, trimming, and maintenance</li>
+                  <li>Expert care for a healthy lawn</li>
+                </ul>
+                <div className="flex justify-center items-center flex-wrap gap-12">
+                  {/* Logo 1 */}
+                  <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
+                    <img
+                      src="https://via.placeholder.com/150"
+                      alt="Company Logo"
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+
+                  {/* Logo 2 */}
+                  <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
+                    <img
+                      src="https://via.placeholder.com/150"
+                      alt="Company Logo"
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+
+                  {/* Logo 3 */}
+                  <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
+                    <img
+                      src="https://via.placeholder.com/150"
+                      alt="Company Logo"
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+
+                  {/* Logo 4 */}
+                  <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
+                    <img
+                      src="https://via.placeholder.com/150"
+                      alt="Company Logo"
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+
+                  {/* Logo 5 */}
+                  <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
+                    <img
+                      src="https://via.placeholder.com/150"
+                      alt="Company Logo"
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+
+                  {/* Logo 6 */}
+                  <div className="w-36 h-36 flex justify-center items-center bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 hover:shadow-2xl">
+                    <img
+                      src="https://via.placeholder.com/150"
+                      alt="Company Logo"
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="subscription" className="py-16 bg-gray-50">
+          <div className="container max-w-5xl mx-auto text-center">
+            <h2 className="text-4xl font-bold mb-8 text-gray-900">
+              Pricing Plans
+            </h2>
+            <div className="flex flex-col lg:flex-row md:flex-row sm:flex-col justify-center gap-16">
               <div className="w-full md:w-1/2 lg:w-1/3 text-left p-6">
                 <div className="mb-6 flex items-center">
                   <div className="w-16 h-16 bg-blue-600 rounded-full text-white flex items-center justify-center">
@@ -115,27 +210,28 @@ export default function Index() {
                     </svg>
                   </div>
                   <h3 className="text-2xl font-semibold text-gray-900 ml-4">
-                    Lawn Management & Mowing
+                    Monthly Plan
                   </h3>
                 </div>
+                <p className="text-xl font-semibold mb-4 text-gray-800">
+                  $50/month
+                </p>
                 <p className="text-lg text-gray-700 mb-4">
-                  We offer subscription-based lawn care services to keep your
-                  lawn looking pristine. Choose from monthly, quarterly, or
-                  yearly plans based on your needs.
+                  Regular mowing and maintenance to keep your lawn looking great
+                  all month long.
                 </p>
                 <ul className="text-gray-700 list-disc list-inside mb-6">
-                  <li>Flexible subscription packages</li>
-                  <li>Regular mowing, trimming, and maintenance</li>
-                  <li>Expert care for a healthy lawn</li>
+                  <li>Regular mowing</li>
+                  <li>Trimming and maintenance</li>
+                  <li>Keep your lawn fresh</li>
                 </ul>
                 <div>
                   <button className="btn btn-outline px-8 py-3 rounded-full font-semibold border-gray-300 text-gray-700 hover:bg-gray-200 transition-all">
-                    Learn More
+                    Subscribe Now
                   </button>
                 </div>
               </div>
 
-              {/* Security Systems Section */}
               <div className="w-full md:w-1/2 lg:w-1/3 text-left p-6">
                 <div className="mb-6 flex items-center">
                   <div className="w-16 h-16 bg-green-600 rounded-full text-white flex items-center justify-center">
@@ -149,92 +245,65 @@ export default function Index() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <path d="M21 21l-6-6M18 7V3c0-.5523-.4477-1-1-1H7c-.5523 0-1 .4477-1 1v4M18 7l3 3M18 7H6c-.5523 0-1 .4477-1 1v11c0 .5523.4477 1 1 1h12c.5523 0 1-.4477 1-1V8c0-.5523-.4477-1-1-1z" />
+                      <path d="M16 2H6C5.44772 2 5 2.44772 5 3V17C5 17.5523 5.44772 18 6 18H18C18.5523 18 19 17.5523 19 17V7L16 2Z" />
                     </svg>
                   </div>
                   <h3 className="text-2xl font-semibold text-gray-900 ml-4">
-                    Security Systems Installation
+                    Quarterly Plan
                   </h3>
                 </div>
+                <p className="text-xl font-semibold mb-4 text-gray-800">
+                  $135/quarter
+                </p>
                 <p className="text-lg text-gray-700 mb-4">
-                  Ensure the safety of your property with advanced security
-                  system installations. We offer a range of systems designed for
-                  both residential and commercial properties.
+                  Save more with quarterly services for a well-maintained lawn
+                  all season.
                 </p>
                 <ul className="text-gray-700 list-disc list-inside mb-6">
-                  <li>24/7 monitoring and alerts</li>
-                  <li>Smart home integration</li>
-                  <li>Customizable security packages</li>
+                  <li>Quarterly maintenance</li>
+                  <li>Seasonal trimming</li>
+                  <li>Comprehensive lawn care</li>
                 </ul>
                 <div>
                   <button className="btn btn-outline px-8 py-3 rounded-full font-semibold border-gray-300 text-gray-700 hover:bg-gray-200 transition-all">
-                    Learn More
+                    Subscribe Now
                   </button>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
 
-        <section id="subscription" className="py-16 bg-gray-100">
-          <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6 text-gray-900">
-              Lawn Management & Mowing Subscription Plans
-            </h2>
-            <p className="text-lg mb-12 text-gray-700">
-              Choose a subscription plan that best fits your needs and enjoy
-              hassle-free lawn care.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
-              {/* Monthly Plan */}
-              <div className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-2xl">
-                <div className="p-6 text-center">
-                  <h3 className="text-2xl font-semibold mb-4 text-gray-900">
-                    Monthly Plan
-                  </h3>
-                  <p className="text-xl font-semibold mb-4 text-gray-800">
-                    $50/month
-                  </p>
-                  <p className="text-lg mb-6 text-gray-600">
-                    Regular mowing and maintenance to keep your lawn looking
-                    great all month long.
-                  </p>
-                  <button className="btn btn-outline px-8 py-3 rounded-full font-semibold border-gray-300 text-gray-700 hover:bg-gray-200 transition-all">
-                    Subscribe Now
-                  </button>
-                </div>
-              </div>
-              {/* Quarterly Plan */}
-              <div className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-2xl">
-                <div className="p-6 text-center">
-                  <h3 className="text-2xl font-semibold mb-4 text-gray-900">
-                    Quarterly Plan
-                  </h3>
-                  <p className="text-xl font-semibold mb-4 text-gray-800">
-                    $135/quarter
-                  </p>
-                  <p className="text-lg mb-6 text-gray-600">
-                    Save more with quarterly services for a well-maintained lawn
-                    all season.
-                  </p>
-                  <button className="btn btn-outline px-8 py-3 rounded-full font-semibold border-gray-300 text-gray-700 hover:bg-gray-200 transition-all">
-                    Subscribe Now
-                  </button>
-                </div>
-              </div>
-              {/* Yearly Plan */}
-              <div className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-2xl">
-                <div className="p-6 text-center">
-                  <h3 className="text-2xl font-semibold mb-4 text-gray-900">
+              <div className="w-full md:w-1/2 lg:w-1/3 text-left p-6">
+                <div className="mb-6 flex items-center">
+                  <div className="w-16 h-16 bg-yellow-600 rounded-full text-white flex items-center justify-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-8 h-8"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M16 2H6C5.44772 2 5 2.44772 5 3V17C5 17.5523 5.44772 18 6 18H18C18.5523 18 19 17.5523 19 17V7L16 2Z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-gray-900 ml-4">
                     Yearly Plan
                   </h3>
-                  <p className="text-xl font-semibold mb-4 text-gray-800">
-                    $500/year
-                  </p>
-                  <p className="text-lg mb-6 text-gray-600">
-                    Our most cost-effective plan to ensure your lawn is always
-                    in top shape year-round.
-                  </p>
+                </div>
+                <p className="text-xl font-semibold mb-4 text-gray-800">
+                  $500/year
+                </p>
+                <p className="text-lg text-gray-700 mb-4">
+                  Our most cost-effective plan to ensure your lawn is always in
+                  top shape year-round.
+                </p>
+                <ul className="text-gray-700 list-disc list-inside mb-6">
+                  <li>Annual mowing</li>
+                  <li>Year-round lawn care</li>
+                  <li>All-season trimming</li>
+                </ul>
+                <div>
                   <button className="btn btn-outline px-8 py-3 rounded-full font-semibold border-gray-300 text-gray-700 hover:bg-gray-200 transition-all">
                     Subscribe Now
                   </button>
@@ -244,74 +313,108 @@ export default function Index() {
           </div>
         </section>
 
-        <section id="features" className="py-16 bg-gray-50">
-      <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-bold text-gray-900 mb-12">Our Key Features</h2>
+        <section id="services" className="py-16 bg-gray-100">
+          <div className=" max-w-5xl mx-auto text-center">
+            <h2 className="text-4xl font-bold mb-6 text-gray-900">
+              Our Lawn Care Services
+            </h2>
+            <p className="text-lg mb-12 py-6 text-gray-700">
+              Choose the lawn care service that best suits your needs and enjoy
+              a well-maintained, beautiful lawn all year round.
+            </p>
+            <div className="grid grid-cols-1  lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-8 items-center justify-center">
+              {/* Service 1 */}
+              <div className=" card bg-white rounded-2xl max-w-sm w-full text-start mx-auto  p-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Lawn Service
+                </h3>
+                <h2 className="font-semibold text-pretty text-secondary py-2 ">
+                  Easy Set Up. You Control Your Schedule and Service from Your
+                  Smart Phone.
+                </h2>
+                <p className="text-lg text-gray-700 mb-4">
+                  Regular mowing and lawn maintenance to keep your yard neat and
+                  healthy.
+                </p>
+                <button className=" py-3 border border-gray-300 rounded-full w-32 font-semibold text-gray-700 hover:bg-gray-200 transition-all">
+                  Get Quote
+                </button>
+              </div>
 
-        {/* Feature Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-          {/* Feature 1: Professional Team */}
-          <div className="bg-white shadow-lg rounded-lg p-8 transition-all transform hover:scale-105 hover:shadow-xl">
-            <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 rounded-full bg-blue-600 text-white flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 7v10M7 12h10" />
-                </svg>
+              {/* Service 2 */}
+              <div className=" card bg-white rounded-2xl max-w-sm w-full text-start mx-auto  p-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Bush & Hedge Trimming
+                </h3>
+                <h2 className="font-semibold text-pretty text-secondary py-2 ">
+                  Easy Set Up. You Control Your Schedule and Service from Your
+                  Smart Phone.
+                </h2>
+                <p className="text-lg text-gray-700 mb-4">
+                  Custom trimming for bushes and hedges to enhance your
+                  landscapes beauty.
+                </p>
+                <button className=" py-3 border border-gray-300 rounded-full w-32 font-semibold text-gray-700 hover:bg-gray-200 transition-all">
+                  Get Quote
+                </button>
+              </div>
+
+              {/* Service 3 */}
+              <div className=" card bg-white rounded-2xl max-w-sm w-full text-start mx-auto  p-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Bed Weeding
+                </h3>
+                <h2 className="font-semibold text-pretty text-secondary py-2 ">
+                  Easy Set Up. You Control Your Schedule and Service from Your
+                  Smart Phone.
+                </h2>
+                <p className="text-lg text-gray-700 mb-4">
+                  Expert weeding to keep your garden beds clean and free of
+                  unwanted plants.
+                </p>
+                <button className=" py-3 border border-gray-300 rounded-full w-32 font-semibold text-gray-700 hover:bg-gray-200 transition-all">
+                  Get Quote
+                </button>
+              </div>
+
+              {/* Service 4 */}
+              <div className=" card bg-white rounded-2xl max-w-sm w-full text-start mx-auto  p-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Mulch Service
+                </h3>
+                <h2 className="font-semibold text-pretty text-secondary py-2 ">
+                  Easy Set Up. You Control Your Schedule and Service from Your
+                  Smart Phone.
+                </h2>
+                <p className="text-lg text-gray-700 mb-4">
+                  Professional mulch delivery and installation to keep your
+                  garden healthy and vibrant.
+                </p>
+                <button className=" py-3 border border-gray-300 rounded-full w-32 font-semibold text-gray-700 hover:bg-gray-200 transition-all">
+                  Get Quote
+                </button>
+              </div>
+
+              {/* Service 5 */}
+              <div className=" card bg-white rounded-2xl max-w-sm w-full text-start mx-auto  p-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Fertilization & Weed Control
+                </h3>
+                <h2 className="font-semibold text-pretty text-secondary py-2 ">
+                  Easy Set Up. You Control Your Schedule and Service from Your
+                  Smart Phone.
+                </h2>
+                <p className=" text-gray-700 mb-4">
+                  Customized fertilization and weed control to ensure your lawn
+                  stays healthy and lush.
+                </p>
+                <button className=" py-3 border border-gray-300 rounded-full w-32 font-semibold text-gray-700 hover:bg-gray-200 transition-all">
+                  Get Quote
+                </button>
               </div>
             </div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Professional Team</h3>
-            <p className="text-gray-700">
-              Our professional team is available 24/7 for any service needs, ensuring that we meet your expectations every time.
-            </p>
           </div>
-
-          {/* Feature 2: Regular Maintenance */}
-          <div className="bg-white shadow-lg rounded-lg p-8 transition-all transform hover:scale-105 hover:shadow-xl">
-            <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 rounded-full bg-green-600 text-white flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 6v12M6 12h12" />
-                </svg>
-              </div>
-            </div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Regular Maintenance</h3>
-            <p className="text-gray-700">
-              We provide regular lawn maintenance and mowing services, ensuring your property stays pristine year-round.
-            </p>
-          </div>
-
-          {/* Feature 3: Visit Scheduling */}
-          <div className="bg-white shadow-lg rounded-lg p-8 transition-all transform hover:scale-105 hover:shadow-xl">
-            <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 rounded-full bg-yellow-600 text-white flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 6h18M3 12h18M3 18h18" />
-                </svg>
-              </div>
-            </div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Visit Scheduling</h3>
-            <p className="text-gray-700">
-              Easily schedule visits at your convenience. We provide a flexible booking system for hassle-free service management.
-            </p>
-          </div>
-        </div>
-
-        {/* Feature 4: Team Verification */}
-        <div className="mt-12 bg-white p-12 rounded-lg shadow-lg">
-          <div className="flex justify-center mb-6">
-            <div className="w-20 h-20 rounded-full bg-red-600 text-white flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9 12l2 2l4-4" />
-              </svg>
-            </div>
-          </div>
-          <h3 className="text-2xl font-semibold text-gray-900 mb-4">Team Verification</h3>
-          <p className="text-gray-700">
-            All of our teams are verified, ensuring that you receive a reliable and trustworthy service every time.
-          </p>
-        </div>
-      </div>
-    </section>
+        </section>
 
         <section id="maintenance" className="py-16 bg-gray-50">
           <div className="container mx-auto text-center">
