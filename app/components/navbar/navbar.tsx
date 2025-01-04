@@ -1,5 +1,3 @@
-"use client";
-
 import {
   HiAdjustments,
   HiChartPie,
@@ -89,7 +87,7 @@ export default function Navbar({ className }: { className: string }) {
   ));
 
   return (
-    <Box pb={120} className={`  ${className}`}>
+    <Box className={`  ${className}`}>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
           <img
@@ -99,10 +97,7 @@ export default function Navbar({ className }: { className: string }) {
             alt="AroundHS"
             className="h-12 w-auto object-contain"
           />
-          <Group h="100%" gap={0} visibleFrom="sm">
-            <Link to="#" className={classes.link}>
-              Home
-            </Link>
+          <Group h="100%" gap={0} visibleFrom="md">
             <HoverCard
               width={600}
               position="bottom"
@@ -114,7 +109,7 @@ export default function Navbar({ className }: { className: string }) {
                 <Link to="#" className={classes.link}>
                   <Center inline>
                     <Box component="span" mr={5}>
-                      Features
+                      Product
                     </Box>
                     <HiChevronDown size={16} color={theme.colors.blue[6]} />
                   </Center>
@@ -123,7 +118,101 @@ export default function Navbar({ className }: { className: string }) {
 
               <HoverCard.Dropdown style={{ overflow: "hidden" }}>
                 <Group justify="space-between" px="md">
-                  <Text fw={500}>Features</Text>
+                  <Text fw={500}>Product</Text>
+                  <Anchor href="#" fz="xs">
+                    View all
+                  </Anchor>
+                </Group>
+
+                <Divider my="sm" />
+
+                <SimpleGrid cols={2} spacing={0}>
+                  {links}
+                </SimpleGrid>
+
+                <div className={classes.dropdownFooter}>
+                  <Group justify="space-between">
+                    <div>
+                      <Text fw={500} fz="sm">
+                        Get started
+                      </Text>
+                      <Text size="xs" c="dimmed">
+                        Their food sources have decreased, and their numbers
+                      </Text>
+                    </div>
+                    <Button variant="default">Get started</Button>
+                  </Group>
+                </div>
+              </HoverCard.Dropdown>
+            </HoverCard>
+            <HoverCard
+              width={600}
+              position="bottom"
+              radius="md"
+              shadow="md"
+              withinPortal
+            >
+              <HoverCard.Target>
+                <Link to="#" className={classes.link}>
+                  <Center inline>
+                    <Box component="span" mr={5}>
+                      About
+                    </Box>
+                    <HiChevronDown size={16} color={theme.colors.blue[6]} />
+                  </Center>
+                </Link>
+              </HoverCard.Target>
+
+              <HoverCard.Dropdown style={{ overflow: "hidden" }}>
+                <Group justify="space-between" px="md">
+                  <Text fw={500}>About</Text>
+                  <Anchor href="#" fz="xs">
+                    View all
+                  </Anchor>
+                </Group>
+
+                <Divider my="sm" />
+
+                <SimpleGrid cols={2} spacing={0}>
+                  {links}
+                </SimpleGrid>
+
+                <div className={classes.dropdownFooter}>
+                  <Group justify="space-between">
+                    <div>
+                      <Text fw={500} fz="sm">
+                        Get started
+                      </Text>
+                      <Text size="xs" c="dimmed">
+                        Their food sources have decreased, and their numbers
+                      </Text>
+                    </div>
+                    <Button variant="default">Get started</Button>
+                  </Group>
+                </div>
+              </HoverCard.Dropdown>
+            </HoverCard>
+            <HoverCard
+              width={600}
+              position="bottom"
+              radius="md"
+              shadow="md"
+              withinPortal
+            >
+              <HoverCard.Target>
+                <Link to="#" className={classes.link}>
+                  <Center inline>
+                    <Box component="span" mr={5}>
+                      Partners
+                    </Box>
+                    <HiChevronDown size={16} color={theme.colors.blue[6]} />
+                  </Center>
+                </Link>
+              </HoverCard.Target>
+
+              <HoverCard.Dropdown style={{ overflow: "hidden" }}>
+                <Group justify="space-between" px="md">
+                  <Text fw={500}>Partners</Text>
                   <Anchor href="#" fz="xs">
                     View all
                   </Anchor>
@@ -151,10 +240,10 @@ export default function Navbar({ className }: { className: string }) {
               </HoverCard.Dropdown>
             </HoverCard>
             <Link to="#" className={classes.link}>
-              Learn
+              Pricing
             </Link>
             <Link to="#" className={classes.link}>
-              Academy
+              Contact
             </Link>
           </Group>
           <Group visibleFrom="sm">
@@ -180,8 +269,8 @@ export default function Navbar({ className }: { className: string }) {
         onClose={closeDrawer}
         size="100%"
         padding="md"
-        title="Navigation"
-        hiddenFrom="sm"
+        title="Around Home Solutions"
+        hiddenFrom="md"
         zIndex={1000000}
       >
         <ScrollArea h="calc(100vh - 80px" mx="-md">
