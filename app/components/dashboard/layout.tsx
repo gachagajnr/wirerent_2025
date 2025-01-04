@@ -1,5 +1,5 @@
 import { Outlet, Link, Form } from "@remix-run/react";
-import {  FaBuilding, FaHeadset, FaHome, FaModx, FaSuperpowers } from "react-icons/fa";
+import {  FaBuilding, FaHeadset, FaHome, FaModx, FaSuperpowers, FaTicketAlt } from "react-icons/fa";
 import { HiLogout, HiUserGroup } from "react-icons/hi";
 import { User } from "~/utils/auth.server";
 
@@ -80,7 +80,7 @@ export default function DashboardLayout({ user }: DashboardLayoutProps) {
             aria-hidden="true"
           ></div>
 
-          <ul className="menu lg:relative z-[1] mt-3  lg:top-0 sm:absolute sm:top-2  sm:left-0   w-52 border  ml-4 rounded-xl bg-white p-4">
+          <ul className=" card menu shadow-lg lg:relative z-[1] mt-3  lg:top-0 sm:absolute sm:top-2  sm:left-0   w-52 border  ml-4 rounded-xl p-4">
             <li>
               <Link to="/app/blocks">
                 <FaBuilding />
@@ -106,11 +106,18 @@ export default function DashboardLayout({ user }: DashboardLayoutProps) {
               </Link>
             </li>
             <li>
+              <Link to="/app/tickets">
+                <FaTicketAlt />
+                Tickets
+              </Link>
+            </li>
+            <li>
               <Link to="/app/settings">
                 <FaModx />
                 Settings
               </Link>
             </li>
+           
             <li>
               <Form method="post">
                 <button

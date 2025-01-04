@@ -29,14 +29,14 @@ type UnitProps = {
 
 const Unit: FC<UnitProps> = ({ unit }) => {
   return (
-    <div className="card bg-base-100 hover:bg-base-200 hover:cursor-pointer w-80 shadow-lg rounded-lg p-4">
+    <Link
+      to={`/app/units/${unit._id?.toString()}`}
+      className="card bg-base-100 hover:bg-base-200 hover:cursor-pointer w-80 shadow-lg rounded-lg p-4"
+    >
       <div className="flex justify-between items-center">
-        <Link
-          to={`/app/units/${unit._id?.toString()}`}
-          className=" text-primary-content font-semibold text-sm   "
-        >
+        <div className=" text-primary-content font-semibold text-sm   ">
           {unit.name}
-        </Link>
+        </div>
         <div className="flex flex-col">
           <div className="mt-1 text-info text-xs">KES {unit.rent}</div>
           {unit.tenant && (
@@ -78,7 +78,7 @@ const Unit: FC<UnitProps> = ({ unit }) => {
           <HiUserAdd />
         </Link>
       )}
-    </div>
+    </Link>
   );
 };
 

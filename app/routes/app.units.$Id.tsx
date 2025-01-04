@@ -1,6 +1,6 @@
 import { Link, useLoaderData, Outlet } from "@remix-run/react";
 import { Title } from "@mantine/core";
-import { HiArrowLeft, HiChat, HiMail, HiPhone } from "react-icons/hi";
+import { HiArrowLeft, HiChat, HiMail, HiPhone, HiTicket } from "react-icons/hi";
 import { connectToDatabase } from "~/utils/db.server";
 import { LoaderFunction } from "@remix-run/node";
 import { authenticator } from "~/utils/auth.server";
@@ -105,6 +105,13 @@ export default function Unit() {
                     title="Send Sms"
                   >
                     <HiChat />
+                  </Link>
+                  <Link
+                    to="ticket"
+                    className="btn btn-circle btn-sm"
+                    title="Open a ticket"
+                  >
+                    <HiTicket />
                   </Link>
                 </div>
                 <Outlet />

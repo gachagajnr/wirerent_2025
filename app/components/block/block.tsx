@@ -25,14 +25,14 @@ type BlockProps = {
 
 const Block: FC<BlockProps> = ({ block }) => {
   return (
-    <div className="card bg-base-100 hover:bg-base-200 hover:cursor-pointer w-80 shadow-lg rounded-lg p-4">
+    <Link
+      to={`/app/blocks/${block._id?.toString()}`}
+      className="card bg-base-100 hover:bg-base-200 hover:cursor-pointer w-80 shadow-lg rounded-lg p-4"
+    >
       <div className="flex justify-between items-center">
-        <Link
-          to={`/app/blocks/${block._id?.toString()}`}
-          className=" text-primary-content font-semibold text-sm "
-        >
+        <div className=" text-primary-content font-semibold text-sm ">
           <div className="  rounded-sm">{block.name}</div>
-        </Link>
+        </div>
 
         <div className="flex flex-row gap-2 items-center">
           <Link
@@ -69,7 +69,7 @@ const Block: FC<BlockProps> = ({ block }) => {
           </p>
         </div>
       )}
-    </div>
+    </Link>
   );
 };
 
