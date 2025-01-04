@@ -29,7 +29,6 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-//   import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from "./navbar.module.css";
 
 const mockdata = [
@@ -65,7 +64,7 @@ const mockdata = [
   },
 ];
 
-export default function Navbar({ className }: { className: string })  {
+export default function Navbar({ className }: { className: string }) {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
@@ -90,11 +89,16 @@ export default function Navbar({ className }: { className: string })  {
   ));
 
   return (
-    <Box pb={120}  className={`  ${className}`}>
+    <Box pb={120} className={`  ${className}`}>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          Wirerent
-          {/* <MantineLogo size={30} /> */}
+          <img
+            src="/arr.png"
+            width={800}
+            height={800}
+            alt="AroundHS"
+            className="h-12 w-auto object-contain"
+          />
           <Group h="100%" gap={0} visibleFrom="sm">
             <Link to="#" className={classes.link}>
               Home

@@ -1,5 +1,6 @@
 import ForgotPasswordForm from "~/components/forms/forgot-password";
 import { Box, Stack, Title, Text, Anchor, Container } from "@mantine/core";
+import { Link } from "@remix-run/react";
 
 export default function ForgotPassword() {
   return (
@@ -14,6 +15,15 @@ export default function ForgotPassword() {
     >
       <Container size="xs">
         <Stack align="center">
+          <Link to="/">
+            <img
+              src="/arr.png"
+              width={800}
+              height={800}
+              alt="AroundHS"
+              className="h-16 w-auto object-contain"
+            />
+          </Link>
           <Title order={1}>Reset password</Title>
           <ForgotPasswordForm />
 

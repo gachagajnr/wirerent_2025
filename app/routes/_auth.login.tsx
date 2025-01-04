@@ -3,6 +3,7 @@ import { Box, Title, Stack, Text, Anchor } from "@mantine/core";
 import { authenticator } from "~/utils/auth.server";
 
 import LoginForm from "~/components/forms/login";
+import { Link } from "@remix-run/react";
 
 export const loader: LoaderFunction = async ({ request }) => {
   return await authenticator.isAuthenticated(request, {
@@ -35,6 +36,15 @@ export default function Login() {
         mx="auto"
       >
         <Stack align="center">
+          <Link to="/">
+            <img
+              src="/arr.png"
+              width={800}
+              height={800}
+              alt="AroundHS"
+              className="h-16 w-auto object-contain"
+            />
+          </Link>
           <Title order={1}>Welcome Back</Title>
           <LoginForm />
           <a href="/auth/google">Login with Google</a>

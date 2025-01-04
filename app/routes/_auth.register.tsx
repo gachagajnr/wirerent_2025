@@ -5,6 +5,7 @@ import { Box, Stack, Title, Text, Anchor, Container } from "@mantine/core";
 import { authenticator } from "~/utils/auth.server";
 import { connectToDatabase } from "~/utils/db.server";
 import { AuthorizationError } from "remix-auth";
+import { Link } from "@remix-run/react";
 
 export const loader: LoaderFunction = async ({ request }) => {
   return await authenticator.isAuthenticated(request, {
@@ -65,6 +66,15 @@ export default function Register() {
     >
       <Container size="xs">
         <Stack align="center">
+        <Link to="/">
+            <img
+              src="/arr.png"
+              width={800}
+              height={800}
+              alt="AroundHS"
+              className="h-16 w-auto object-contain"
+            />
+          </Link>
           <Title order={1}>Create an account</Title>
           <RegisterForm />
 

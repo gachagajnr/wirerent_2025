@@ -2,12 +2,10 @@ import { Link, Outlet, useLoaderData, useNavigate } from "@remix-run/react";
 import { Title } from "@mantine/core";
 import { HiArrowLeft, HiChat, HiMail } from "react-icons/hi";
 import BlockCard from "~/components/block/block-card";
-import UnitTable from "~/components/unit/unit-table";
 import { LoaderFunction } from "@remix-run/node";
 import { ObjectId } from "mongodb";
 import { authenticator } from "~/utils/auth.server";
 import { connectToDatabase } from "~/utils/db.server";
-import Unit from "~/components/unit/unit";
 import UnitCard from "~/components/unit/unit-card";
 import TenantCard from "~/components/tenant/tenant-card";
 
