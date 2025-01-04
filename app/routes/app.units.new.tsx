@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "@remix-run/react";
+import {   useLoaderData, useNavigate } from "@remix-run/react";
 import { Title, Paper } from "@mantine/core";
 import UnitForm from "~/components/forms/unit";
 import { HiArrowLeft } from "react-icons/hi";
@@ -124,13 +124,19 @@ export const action: ActionFunction = async ({
 
 export default function NewUnit() {
   const blocks = useLoaderData<typeof loader>();
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row gap-4 items-center">
-        <Link to="/app/units" className="btn btn-circle   btn-sm">
+        <button
+          onClick={() => {
+            navigate(-1);
+          }}
+          className="btn btn-circle btn-sm"
+        >
           <HiArrowLeft />
-        </Link>
+        </button>
         <Title order={4}>New Unit</Title>
       </div>
 

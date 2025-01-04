@@ -96,7 +96,7 @@ export default function Tenants() {
             label=""
             placeholder=" Search"
           />
-        </div>{" "}
+        </div>
         <Link
           to="/app/tenants/new"
           className="btn btn-primary text-white btn-sm"

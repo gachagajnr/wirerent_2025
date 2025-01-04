@@ -1,14 +1,20 @@
-import { Link } from "@remix-run/react";
+import { useNavigate } from "@remix-run/react";
 import { Title } from "@mantine/core";
 import { HiArrowLeft } from "react-icons/hi";
 
 export default function Tenant() {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row gap-4 items-center">
-        <Link to="/app/tenants" className="btn btn-circle btn-sm">
+        <button
+          onClick={() => {
+            navigate(-1);
+          }}
+          className="btn btn-circle btn-sm"
+        >
           <HiArrowLeft />
-        </Link>
+        </button>
         <Title order={4}>Tenant Detail</Title>
       </div>
       {/* <BlockForm /> */}

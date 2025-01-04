@@ -31,7 +31,7 @@ type UnitProps = {
 
 const UnitDetail: FC<UnitProps> = ({ unit }) => {
   return (
-    <div className="card bg-base-100 hover:cursor-pointer border rounded-lg p-4">
+    <div className="card  hover:cursor-pointer  shadow-lg rounded-lg p-4">
       <div className="flex justify-between items-center">
         <Link
           to={`/app/units/${unit._id?.toString()}`}
