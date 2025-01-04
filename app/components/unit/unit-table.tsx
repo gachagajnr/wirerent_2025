@@ -30,7 +30,7 @@ const UnitTable: React.FC<Props> = ({ units }) => {
       <table className="table table-xs">
         <thead>
           <tr>
-            <th>#</th>
+            
             <th>Name</th>
             <th>Type</th>
             <th>Rent</th>

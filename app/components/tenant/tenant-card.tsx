@@ -1,12 +1,7 @@
 import { Link } from "@remix-run/react";
 import type { FC } from "react";
 
-import {
-  HiArrowCircleRight,
-  HiDocument,
-  HiMail,
-  HiPhone,
-} from "react-icons/hi";
+import { HiDocument, HiMail, HiPhone } from "react-icons/hi";
 
 export interface TenantData {
   _id?: string;
@@ -48,15 +43,6 @@ const TenantCard: FC<TenantProps> = ({ tenant }) => {
       </div>
       <div className=" flex flex-row mt-1 items-center gap-1  text-xs">
         <HiDocument /> ID Number: {tenant.idNumber}
-      </div>
-
-      <div className="flex flex-row flex-wrap items-center text-xs space-x-2">
-        <Link
-          to={`/app/tenants/${tenant._id}`}
-          className="flex flex-1 text-primary  justify-end btn btn-ghost"
-        >
-          <HiArrowCircleRight />
-        </Link>
       </div>
     </div>
   );
