@@ -1,9 +1,23 @@
 import type { MetaFunction } from "@remix-run/node";
-import { FaClock, FaHandshake, FaLeaf } from "react-icons/fa";
+import {
+  FaClock,
+  FaHandshake,
+  FaInstagram,
+  FaLeaf,
+  FaTwitterSquare,
+} from "react-icons/fa";
 
 import Navbar from "~/components/navbar/navbar";
 import Footer from "~/components/footer/footer";
-import { HiClock } from "react-icons/hi";
+import {
+  HiClock,
+  HiLightBulb,
+  HiLocationMarker,
+  HiMail,
+  HiPhone,
+} from "react-icons/hi";
+import ContactForm from "~/components/forms/contact";
+import { ActionIcon, Group, Paper } from "@mantine/core";
 
 export const meta: MetaFunction = () => {
   return [
@@ -70,7 +84,7 @@ export default function Index() {
           </div>
         </div>
 
-        <section id="partners" className="container mx-auto max-w-4xl py-6">
+        <section id="partners" className="container mx-auto max-w-4xl p-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="flex flex-col items-center text-center p-6 border-b-2 border-gray-200 hover:border-green-600 transition duration-500">
               <div className="text-green-600 text-5xl mb-4">
@@ -265,7 +279,7 @@ export default function Index() {
           id="onboarding"
           className="container max-w-7xl rounded-3xl mt-12 mb-12 p-6 mx-auto text-center  bg-gradient-to-br from-green-100 via-white to-green-50"
         >
-          <div className="flex flex-row justify-between text-center items-center gap-16">
+          <div className="flex flex-col lg:flex-row md:flex-row sm:flex-col justify-between text-center items-center gap-16">
             <div className="flex w-full md:w-1/2 p-8 flex-col justify-between items-start space-y-6">
               <div className="flex items-center text-start space-x-6">
                 <div className=" rounded-full text-white flex items-center justify-center">
@@ -500,7 +514,7 @@ export default function Index() {
 
         <section id="services" className="py-16 bg-gray-100 ">
           <div className="container mx-auto w-full py-8 max-w-6xl">
-            <div className="flex flex-row gap-4 items-center justify-center">
+            <div className="flex flex-col lg:flex-row md:flex-row sm:flex-col gap-4 p-6 items-center justify-center">
               <div className="flex   gap-4 md:w-1/2">
                 <h2 className="text-4xl font-bold mb-6 text-gray-900">
                   Explore Our Comprehensive Lawn Care Services
@@ -612,80 +626,155 @@ export default function Index() {
           </div>
         </section>
 
-        <section id="maintenance" className="py-16 bg-gray-50">
-          <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-8 text-gray-900">
-              Professional Team & Regular Maintenance
+        <div className="container max-w-6xl mx-auto mt-16">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-gray-900 mb-8">
+              How Our Booking Process Works
             </h2>
-            
+            <p className="text-lg text-gray-700 mb-12">
+              Follow these simple steps to confirm and schedule your lawn care
+              service with ease.
+            </p>
           </div>
-        </section>
 
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-8 text-gray-900">
-              What Our Clients Say
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <div className="card bg-white shadow-lg rounded-lg">
-                <div className="card-body p-6">
-                  <p className="italic text-gray-700">
-                    "Their lawn care service has completely transformed our
-                    yard. Highly recommend!"
-                  </p>
-                  <h4 className="font-bold mt-4 text-gray-900">- Sarah Lee</h4>
-                </div>
+          <div className="flex justify-between gap-4 space-x-8 flex-col lg:flex-row md:flex-row sm:flex-col">
+            {/* Step 1 */}
+            <div className="flex flex-col items-center w-96 text-center">
+              <div className="w-16 h-16 bg-green-600 text-white flex items-center justify-center rounded-full mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-8 h-8"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.03 20 4 16.97 4 12C4 7.03 7.03 4 12 4C16.97 4 20 7.03 20 12C20 16.97 16.97 20 12 20Z" />
+                </svg>
               </div>
-              <div className="card bg-white shadow-lg rounded-lg">
-                <div className="card-body p-6">
-                  <p className="italic text-gray-700">
-                    "The security system installation was quick and seamless. I
-                    feel so much safer now!"
-                  </p>
-                  <h4 className="font-bold mt-4 text-gray-900">
-                    - David Smith
-                  </h4>
-                </div>
+              <h3 className="text-xl font-semibold text-gray-900">
+                Step 1: Book Your Service
+              </h3>
+              <p className="text-sm text-gray-700 mt-2">
+                Select your preferred date and time, and we’ll reserve your spot
+                for the service.
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="flex flex-col items-center w-96 text-center">
+              <div className="w-16 h-16 bg-blue-600 text-white flex items-center justify-center rounded-full mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-8 h-8"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.03 20 4 16.97 4 12C4 7.03 7.03 4 12 4C16.97 4 20 7.03 20 12C20 16.97 16.97 20 12 20Z" />
+                </svg>
               </div>
+              <h3 className="text-xl font-semibold text-gray-900">
+                Step 2: Verify the Team
+              </h3>
+              <p className="text-sm text-gray-700 mt-2">
+                A link will be sent to you for confirming the team that will
+                handle your lawn care service.
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="flex flex-col items-center w-96 text-center">
+              <div className="w-16 h-16 bg-yellow-600 text-white flex items-center justify-center rounded-full mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-8 h-8"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.03 20 4 16.97 4 12C4 7.03 7.03 4 12 4C16.97 4 20 7.03 20 12C20 16.97 16.97 20 12 20Z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900">
+                Step 3: Confirm the Scheduling
+              </h3>
+              <p className="text-sm text-gray-700 mt-2">
+                Once verified, confirm the scheduling and get ready for our team
+                to deliver expert service at your door.
+              </p>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section id="contact" className="py-16 bg-base-100">
-          <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-8">Contact Us</h2>
-            <form className="max-w-lg mx-auto">
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text">Your Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  className="input input-bordered"
-                />
+        <section
+          id="contact"
+          className="container mt-16 mx-auto p-16 bg-base-100 border rounded-3xl max-w-5xl  bg-gradient-to-br from-blue-100 via-white to-blue-50"
+        >
+          <div className="container mx-auto text-center ">
+            <div className="flex flex-col lg:flex-row md:flex-row sm:flex-coljustify-between gap-8 ">
+              <div className="flex flex-col text-left items-start gap-2 md:w-1/2">
+                <h2 className="text-4xl font-bold mb-8">Contact Us</h2>
+                <h6>
+                  Leave your email and we will get back to you within 24 hours
+                </h6>
+                <div className="flex flex-row gap-4 items-center">
+                  <HiMail className="h-6 w-6 text-primary" />
+                  <div className="flex flex-col  gap-0 text-start">
+                    <h2 className="text-sm text-secondary">Email</h2>
+                    <p className="text-sm">aroundhomesolutions@gmail.com</p>
+                  </div>
+                </div>
+                <div className="flex flex-row gap-4 items-center">
+                  <HiPhone className="h-6 w-6 text-primary" />
+                  <div className="flex flex-col  gap-0 text-start">
+                    <h2 className="text-sm text-secondary">Phone</h2>
+                    <p className="text-sm">0712345678</p>
+                  </div>
+                </div>
+                <div className="flex flex-row gap-4 items-center">
+                  <HiLocationMarker className="h-6 w-6 text-primary" />
+                  <div className="flex flex-col  gap-0 text-start">
+                    <h2 className="text-sm text-secondary">Address</h2>
+                    <p className="text-sm">Westlands Commercial</p>
+                  </div>
+                </div>
+                <div className="flex flex-row gap-4 items-center">
+                  <HiLightBulb className="h-6 w-6 text-primary" />
+                  <div className="flex flex-col  gap-0 text-start">
+                    <h2 className="text-sm text-secondary">Working Hours</h2>
+                    <p className="text-sm">Mon - Sat 8.00 - 5.00</p>
+                  </div>
+                </div>
+                <Group
+                  gap={0}
+                  // className={classes.social}
+                  justify="flex-end"
+                  wrap="nowrap"
+                >
+                  <ActionIcon size="lg" color="gray" variant="subtle">
+                    <FaTwitterSquare size={18} stroke="1" />
+                  </ActionIcon>
+
+                  <ActionIcon size="lg" color="gray" variant="subtle">
+                    <FaInstagram size={18} stroke="1" />
+                  </ActionIcon>
+                </Group>
               </div>
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text">Email Address</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="input input-bordered"
-                />
+              <div className="flex flex-col   gap-2 md:w-1/2">
+                <Paper shadow="xs" radius="xl" p="xl">
+                  <ContactForm />
+                </Paper>
               </div>
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text">Message</span>
-                </label>
-                <textarea
-                  className="textarea textarea-bordered"
-                  placeholder="Enter your message"
-                ></textarea>
-              </div>
-              <button className="btn btn-primary w-full">Submit</button>
-            </form>
+            </div>
           </div>
         </section>
       </main>
