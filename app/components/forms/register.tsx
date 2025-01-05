@@ -1,6 +1,6 @@
 import { Form } from "@remix-run/react";
 
-import { HiLockClosed, HiMail, HiPhone, HiUser, HiGlobe } from "react-icons/hi";
+import { HiLockClosed, HiMail, HiPhone, HiUser, } from "react-icons/hi";
 
 import {
   Button,
@@ -10,34 +10,21 @@ import {
   SimpleGrid,
   Box,
 } from "@mantine/core";
- 
+
 interface RegisterFormProps {}
 
 const RegisterForm: React.FC<RegisterFormProps> = () => {
   return (
     <Box miw={300} ta="start">
       <Form method="post">
-        <SimpleGrid
-          cols={{ base: 1, sm: 2, lg: 2 }}
-          spacing={{ base: 4, sm: "md" }}
-          verticalSpacing={{ base: "xs", sm: "sm" }}
-        >
-          <TextInput
-            name="name"
-            withAsterisk
-            label="Full name"
-            leftSection={<HiUser />}
-            placeholder="wen joe"
-          />
+        <TextInput
+          name="name"
+          withAsterisk
+          label="Full name"
+          leftSection={<HiUser />}
+          placeholder="wen joe"
+        />
 
-          <TextInput
-            name="website"
-            withAsterisk
-            label="Website"
-            leftSection={<HiGlobe />}
-            placeholder="yourdomain.com"
-          />
-        </SimpleGrid>
         <SimpleGrid
           cols={{ base: 1, sm: 2, lg: 2 }}
           spacing={{ base: 4, sm: "md" }}

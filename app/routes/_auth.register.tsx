@@ -18,7 +18,7 @@ export const action: ActionFunction = async ({ request }) => {
   const email = form.get("email") as string;
   const password = form.get("password") as string;
   const name = form.get("name") as string;
-  const website = form.get("website") as string;
+  // const website = form.get("website") as string;
   const phone = form.get("phone") as string;
 
   const salt = await bcrypt.genSalt(10);
@@ -29,7 +29,7 @@ export const action: ActionFunction = async ({ request }) => {
     password: hashedPassword,
     phone: phone,
     name: name,
-    website: website,
+    // website: website,
   };
 
   const { db } = await connectToDatabase();
