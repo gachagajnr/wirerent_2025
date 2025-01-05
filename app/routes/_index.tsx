@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import {
   FaClock,
   FaHandshake,
@@ -18,12 +18,27 @@ import {
 } from "react-icons/hi";
 import ContactForm from "~/components/forms/contact";
 import { ActionIcon, Group, Paper } from "@mantine/core";
+import { connectToDatabase } from "~/utils/db.server";
 
 export const meta: MetaFunction = () => {
   return [
     { title: "New Remix App" },
     { name: "description", content: "Welcome to Remix!" },
   ];
+};
+
+export const loader: LoaderFunction = async () => {
+  // const user = await authenticator.isAuthenticated(request, {
+  //   failureRedirect: "/",
+  // });
+
+  const { db } = await connectToDatabase();
+
+  const response = await db.collection("plans").find({}).toArray();
+
+  const plans = JSON.parse(JSON.stringify(response));
+
+  return { plans };
 };
 
 export default function Index() {

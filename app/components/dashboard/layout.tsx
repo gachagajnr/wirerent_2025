@@ -1,6 +1,6 @@
 import { Outlet, Link, Form } from "@remix-run/react";
 import {  FaBuilding, FaHeadset, FaHome, FaModx, FaSuperpowers, FaTicketAlt } from "react-icons/fa";
-import { HiLogout, HiUserGroup } from "react-icons/hi";
+import { HiLogout, HiOutlineUserGroup, HiPlay, HiUserGroup } from "react-icons/hi";
 import { User } from "~/utils/auth.server";
 
 interface DashboardLayoutProps {
@@ -109,6 +109,18 @@ export default function DashboardLayout({ user }: DashboardLayoutProps) {
               <Link to="/app/tickets">
                 <FaTicketAlt />
                 Tickets
+              </Link>
+            </li>
+            <li>
+              <Link to="/app/plans">
+                <HiPlay />
+                Plans
+              </Link>
+            </li>
+            <li>
+              <Link to="/app/teams">
+                <HiOutlineUserGroup />
+                Teams
               </Link>
             </li>
             <li>
