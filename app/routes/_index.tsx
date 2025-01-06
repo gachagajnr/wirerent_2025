@@ -20,7 +20,7 @@ import ContactForm from "~/components/forms/contact";
 import { ActionIcon, Group, Paper } from "@mantine/core";
 import { connectToDatabase } from "~/utils/db.server";
 import PlanCard, { PlanData } from "~/components/plan/plan-card";
-import { useLoaderData } from "@remix-run/react";
+import { Outlet, useLoaderData } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -50,6 +50,7 @@ export default function Index() {
     <div className="flex flex-col w-full h-screen">
       <Navbar className="fixed top-0 left-0 w-full z-50 bg-white" />
       <main className=" ">
+        <Outlet />
         <div className="hero min-h-screen bg-gradient-to-br from-green-100 via-white to-green-50">
           <div className="hero-content text-center px-6">
             <div className="max-w-6xl mx-auto mt-24">

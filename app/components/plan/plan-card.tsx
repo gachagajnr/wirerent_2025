@@ -47,7 +47,7 @@ const PlanCard: FC<PlanProps> = ({ plan }) => {
       </ul>
       <div>
         <Link
-          to={`/subscribe/${plan._id}`}
+          to={`subscribe/${plan._id}`}
           className="btn btn-outline px-8 py-3 rounded-full font-semibold border-gray-300 text-gray-700 hover:bg-gray-200 transition-all"
         >
           Subscribe Now

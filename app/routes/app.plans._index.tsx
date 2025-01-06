@@ -3,7 +3,7 @@ import { Title } from "@mantine/core";
 import { LoaderFunction } from "@remix-run/node";
 import { authenticator } from "~/utils/auth.server";
 import { connectToDatabase } from "~/utils/db.server";
-import PlanCard, { PlanData } from "~/components/plan/plan-card";
+import { PlanData } from "~/components/plan/plan-card";
 import AdminPlanCard from "~/components/plan/admin-plan-card ";
 
 export const loader: LoaderFunction = async ({ request }) => {
