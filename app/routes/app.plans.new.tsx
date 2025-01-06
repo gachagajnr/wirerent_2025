@@ -6,7 +6,7 @@ import {
   LoaderFunction,
   redirect,
   ActionFunctionArgs,
-  json,
+   // json,
 } from "@remix-run/node";
 
 import { connectToDatabase } from "~/utils/db.server";
@@ -29,20 +29,23 @@ export const action: ActionFunction = async ({
   const name = form.get("name") as string;
   const description = form.get("description") as string;
   const price = form.get("price") as string;
+  const frequency = form.get("frequency") as string;
   const addons = form
     .getAll("addons[]")
     .map((addon) => (typeof addon === "string" ? addon.trim() : addon));
 
   const errors: {
     name: string;
+    frequency: string;
     description: string;
     price: string;
     addons: string[];
   } = {
     name: "",
     description: "",
+    frequency: "",
     price: "",
-    addons: [],
+    addons: [""],
   };
 
   if (!name) {
@@ -51,6 +54,9 @@ export const action: ActionFunction = async ({
 
   if (!description) {
     errors.description = "Description is Required";
+  }
+  if (!frequency) {
+    errors.frequency = "Plan frequency is Required";
   }
 
   if (!price || isNaN(Number(price)) || Number(price) <= 0) {
@@ -62,21 +68,18 @@ export const action: ActionFunction = async ({
       errors.addons[index] = `Addon ${index + 1} cannot be empty`;
     }
   });
-  console.log("2", name, description, price, addons);
 
-  if (Object.values(errors).some((error) => error !== "")) {
-    return json({ errors });
-  }
-
-  console.log("4", name, description, price, addons);
+  // if (Object.values(errors).some((error) => error !== "")) {
+  //   return json({ errors });
+  // }
 
   const data = {
     name: name,
     description: description,
     price: price,
     addons: addons,
+    frequency: frequency,
   };
-  console.log("data,", data);
 
   const { db } = await connectToDatabase();
 
@@ -92,7 +95,7 @@ export const action: ActionFunction = async ({
   throw new Error("Plan with name already exists");
 };
 
-export default function NewUnit() {
+export default function NewPlan() {
   // const data = useLoaderData<typeof loader>();
   const navigate = useNavigate();
 

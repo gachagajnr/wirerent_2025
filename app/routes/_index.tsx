@@ -1,4 +1,4 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import { type LoaderFunction, type MetaFunction } from "@remix-run/node";
 import {
   FaClock,
   FaHandshake,
@@ -19,6 +19,8 @@ import {
 import ContactForm from "~/components/forms/contact";
 import { ActionIcon, Group, Paper } from "@mantine/core";
 import { connectToDatabase } from "~/utils/db.server";
+import PlanCard, { PlanData } from "~/components/plan/plan-card";
+import { useLoaderData } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -42,6 +44,8 @@ export const loader: LoaderFunction = async () => {
 };
 
 export default function Index() {
+  const data = useLoaderData<typeof loader>();
+
   return (
     <div className="flex flex-col w-full h-screen">
       <Navbar className="fixed top-0 left-0 w-full z-50 bg-white" />
@@ -407,122 +411,20 @@ export default function Index() {
               Pricing Plans
             </h2>
             <div className="flex flex-col lg:flex-row md:flex-row sm:flex-col justify-center gap-16">
-              <div className="w-full md:w-1/2 lg:w-1/3 text-left p-6">
-                <div className="mb-6 flex items-center">
-                  <div className="w-16 h-16 bg-blue-600 rounded-full text-white flex items-center justify-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-8 h-8"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+              {data.plans.length === 0 ? (
+                <p className="text-gray-500 italic">{`You have added 0 plans`}</p>
+              ) : (
+                data.plans.map((plan: PlanData) => {
+                  return (
+                    <div
+                      key={plan._id}
+                      className="w-full flex md:w-1/2 lg:w-1/3 text-left p-6"
                     >
-                      <path d="M16 2H6C5.44772 2 5 2.44772 5 3V17C5 17.5523 5.44772 18 6 18H18C18.5523 18 19 17.5523 19 17V7L16 2Z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 ml-4">
-                    Monthly Plan
-                  </h3>
-                </div>
-                <p className="text-xl font-semibold mb-4 text-gray-800">
-                  $50/month
-                </p>
-                <p className="text-lg text-gray-700 mb-4">
-                  Regular mowing and maintenance to keep your lawn looking great
-                  all month long.
-                </p>
-                <ul className="text-gray-700 list-disc list-inside mb-6">
-                  <li>Regular mowing</li>
-                  <li>Trimming and maintenance</li>
-                  <li>Keep your lawn fresh</li>
-                </ul>
-                <div>
-                  <button className="btn btn-outline px-8 py-3 rounded-full font-semibold border-gray-300 text-gray-700 hover:bg-gray-200 transition-all">
-                    Subscribe Now
-                  </button>
-                </div>
-              </div>
-
-              <div className="w-full md:w-1/2 lg:w-1/3 text-left p-6">
-                <div className="mb-6 flex items-center">
-                  <div className="w-16 h-16 bg-green-600 rounded-full text-white flex items-center justify-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-8 h-8"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M16 2H6C5.44772 2 5 2.44772 5 3V17C5 17.5523 5.44772 18 6 18H18C18.5523 18 19 17.5523 19 17V7L16 2Z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 ml-4">
-                    Quarterly Plan
-                  </h3>
-                </div>
-                <p className="text-xl font-semibold mb-4 text-gray-800">
-                  $135/quarter
-                </p>
-                <p className="text-lg text-gray-700 mb-4">
-                  Save more with quarterly services for a well-maintained lawn
-                  all season.
-                </p>
-                <ul className="text-gray-700 list-disc list-inside mb-6">
-                  <li>Quarterly maintenance</li>
-                  <li>Seasonal trimming</li>
-                  <li>Comprehensive lawn care</li>
-                </ul>
-                <div>
-                  <button className="btn btn-outline px-8 py-3 rounded-full font-semibold border-gray-300 text-gray-700 hover:bg-gray-200 transition-all">
-                    Subscribe Now
-                  </button>
-                </div>
-              </div>
-
-              <div className="w-full md:w-1/2 lg:w-1/3 text-left p-6">
-                <div className="mb-6 flex items-center">
-                  <div className="w-16 h-16 bg-yellow-600 rounded-full text-white flex items-center justify-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-8 h-8"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M16 2H6C5.44772 2 5 2.44772 5 3V17C5 17.5523 5.44772 18 6 18H18C18.5523 18 19 17.5523 19 17V7L16 2Z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 ml-4">
-                    Yearly Plan
-                  </h3>
-                </div>
-                <p className="text-xl font-semibold mb-4 text-gray-800">
-                  $500/year
-                </p>
-                <p className="text-lg text-gray-700 mb-4">
-                  Our most cost-effective plan to ensure your lawn is always in
-                  top shape year-round.
-                </p>
-                <ul className="text-gray-700 list-disc list-inside mb-6">
-                  <li>Annual mowing</li>
-                  <li>Year-round lawn care</li>
-                  <li>All-season trimming</li>
-                </ul>
-                <div>
-                  <button className="btn btn-outline px-8 py-3 rounded-full font-semibold border-gray-300 text-gray-700 hover:bg-gray-200 transition-all">
-                    Subscribe Now
-                  </button>
-                </div>
-              </div>
+                      <PlanCard plan={plan} />
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
         </section>

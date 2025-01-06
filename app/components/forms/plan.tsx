@@ -67,11 +67,24 @@ const PlanForm = () => {
             }
           />
         </SimpleGrid>
+        <TextInput
+          withAsterisk
+          name="frequency"
+          label="Frequency"
+          placeholder="Frequency"
+          error={
+            actionData?.errors?.frequency ? (
+              <em>{actionData?.errors.frequency}</em>
+            ) : null
+          }
+        />
         <Textarea
           withAsterisk
           name="description"
           label="Description"
           placeholder="Description"
+          autosize
+          minRows={2}
           error={
             actionData?.errors?.description ? (
               <em>{actionData?.errors.description}</em>
@@ -93,7 +106,7 @@ const PlanForm = () => {
                 error={
                   actionData?.errors?.addons &&
                   actionData?.errors?.addons[index] ? (
-                    <em>{actionData?.errors?.addons[index]}</em>  
+                    <em>{actionData?.errors?.addons[index]}</em>
                   ) : null
                 }
               />
