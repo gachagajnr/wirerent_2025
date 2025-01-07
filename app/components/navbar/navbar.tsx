@@ -245,6 +245,9 @@ export default function Navbar({ className }: { className: string }) {
             <Link to="#" className={classes.link}>
               Contact
             </Link>
+            <Link to="#" className={classes.link}>
+              Team
+            </Link>
           </Group>
           <Group visibleFrom="sm">
             <Link to="/login">

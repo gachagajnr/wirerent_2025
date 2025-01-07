@@ -45,7 +45,23 @@ export const loader: LoaderFunction = async () => {
 
 export default function Index() {
   const data = useLoaderData<typeof loader>();
-
+  const teamMembers = [
+    {
+      name: "Jane Doe",
+      role: "CEO & Founder",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      name: "John Smith",
+      role: "CTO",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      name: "Emily Johnson",
+      role: "Lead Designer",
+      image: "https://via.placeholder.com/150",
+    },
+  ];
   return (
     <div className="flex flex-col w-full h-screen">
       <Navbar className="fixed top-0 left-0 w-full z-50 bg-white" />
@@ -103,7 +119,6 @@ export default function Index() {
             </div>
           </div>
         </div>
-
         <section id="partners" className="container mx-auto max-w-4xl p-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="flex flex-col items-center text-center p-6 border-b-2 border-gray-200 hover:border-green-600 transition duration-500">
@@ -142,7 +157,6 @@ export default function Index() {
             </div>
           </div>
         </section>
-
         <section id="services" className="py-8 bg-gray-50">
           <div className="container mx-auto text-center">
             <div className="flex  justify-center gap-16">
@@ -206,7 +220,6 @@ export default function Index() {
             </div>
           </div>
         </section>
-
         <section
           id="get-started"
           className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-16 px-8"
@@ -294,7 +307,6 @@ export default function Index() {
           </div>
           <div className="mt-16"></div>
         </section>
-
         <section
           id="onboarding"
           className="container max-w-7xl rounded-3xl mt-12 mb-12 p-6 mx-auto text-center  bg-gradient-to-br from-green-100 via-white to-green-50"
@@ -405,7 +417,6 @@ export default function Index() {
             </div>
           </div>
         </section>
-
         <section id="subscription" className="py-16 bg-gray-50">
           <div className="container max-w-5xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-8 text-gray-900">
@@ -429,7 +440,6 @@ export default function Index() {
             </div>
           </div>
         </section>
-
         <section id="services" className="py-16 bg-gray-100 ">
           <div className="container mx-auto w-full py-8 max-w-6xl">
             <div className="flex flex-col lg:flex-row md:flex-row sm:flex-col gap-4 p-6 items-center justify-center">
@@ -543,7 +553,6 @@ export default function Index() {
             </div>
           </div>
         </section>
-
         <div className="container max-w-6xl mx-auto mt-16">
           <div className="text-center">
             <h2 className="text-4xl font-bold text-gray-900 mb-8">
@@ -632,6 +641,32 @@ export default function Index() {
             </div>
           </div>
         </div>
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
+              Meet Our Team
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teamMembers.map((member, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center text-center"
+                >
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-32 h-32 rounded-full mb-4"
+                  />
+                  <h3 className="text-xl font-semibold text-gray-800">
+                    {member.name}
+                  </h3>
+                  <p className="text-gray-600">{member.role}</p>
+                  <div className="flex space-x-4 mt-4"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <section
           id="contact"
