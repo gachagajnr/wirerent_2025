@@ -24,8 +24,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     data = await db.collection("plans").find({}).toArray();
   }
   const plans = JSON.parse(JSON.stringify(data));
-  console.log(plans);
-  return { user, year, plans };
+   return { user, year, plans };
 };
 
 export default function Plans() {

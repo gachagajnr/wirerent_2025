@@ -1,44 +1,33 @@
 "use client";
 
 import { FaInstagram, FaTwitterSquare } from "react-icons/fa";
-import { ActionIcon, Container, Group, Text } from '@mantine/core';
+import { ActionIcon, Container, Group, Text } from "@mantine/core";
 // import { MantineLogo } from '@mantinex/mantine-logo';
-import classes from './footer.module.css';
+import classes from "./footer.module.css";
 
 const data = [
   {
-    title: 'About',
+    title: "About",
     links: [
-      { label: 'Features', link: '#' },
-      { label: 'Pricing', link: '#' },
-      { label: 'Support', link: '#' },
-      { label: 'Forums', link: '#' },
+      { label: "Features", link: "#" },
+      { label: "Pricing", link: "#" },
+      { label: "Support", link: "#" },
     ],
   },
+
   {
-    title: 'Project',
+    title: "Community",
     links: [
-      { label: 'Contribute', link: '#' },
-      { label: 'Media assets', link: '#' },
-      { label: 'Changelog', link: '#' },
-      { label: 'Releases', link: '#' },
-    ],
-  },
-  {
-    title: 'Community',
-    links: [
-      { label: 'Join Discord', link: '#' },
-      { label: 'Follow on Twitter', link: '#' },
-      { label: 'Email newsletter', link: '#' },
-      { label: 'GitHub discussions', link: '#' },
-    ],
+      { label: "Follow on Twitter", link: "#" },
+      { label: "Email newsletter", link: "#" },
+     ],
   },
 ];
 
-export default  function Footer() {
+export default function Footer() {
   const groups = data.map((group) => {
     const links = group.links.map((link, index) => (
-      <Text<'a'>
+      <Text<"a">
         key={index}
         className={classes.link}
         component="a"
@@ -64,21 +53,26 @@ export default  function Footer() {
           {/* <MantineLogo size={30} /> */}
           Wirerent
           <Text size="xs" c="dimmed" className={classes.description}>
-            Build fully functional accessible web applications faster than ever
+            Reliable & convenient home solutions.
           </Text>
         </div>
         <div className={classes.groups}>{groups}</div>
       </Container>
       <Container className={classes.afterFooter}>
         <Text c="dimmed" size="sm">
-          © 2020 mantine.dev. All rights reserved.
+          © 2024 roundhs.com All rights reserved.
         </Text>
 
-        <Group gap={0} className={classes.social} justify="flex-end" wrap="nowrap">
+        <Group
+          gap={0}
+          className={classes.social}
+          justify="flex-end"
+          wrap="nowrap"
+        >
           <ActionIcon size="lg" color="gray" variant="subtle">
             <FaTwitterSquare size={18} stroke="1" />
           </ActionIcon>
-        
+
           <ActionIcon size="lg" color="gray" variant="subtle">
             <FaInstagram size={18} stroke="1" />
           </ActionIcon>
