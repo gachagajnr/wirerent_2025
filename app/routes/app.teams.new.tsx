@@ -1,4 +1,4 @@
-import {    useNavigate } from "@remix-run/react";
+import { useNavigate } from "@remix-run/react";
 import { Title, Paper } from "@mantine/core";
 // import UnitForm from "~/components/forms/unit";
 import { HiArrowLeft } from "react-icons/hi";
@@ -12,28 +12,14 @@ import {
 
 import { connectToDatabase } from "~/utils/db.server";
 import { authenticator } from "~/utils/auth.server";
-import { ObjectId } from "mongodb";
+import MemberForm from "~/components/forms/team-member";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await authenticator.isAuthenticated(request, {
     failureRedirect: "/login",
   });
 
-  const { db } = await connectToDatabase();
-  const url = new URL(request.url);
-  const yearFilter = Number(url.searchParams.get("year"));
-  const year = yearFilter || new Date().getFullYear();
-
-  let blocks;
-
-  if (yearFilter) {
-    blocks = await db.collection("blocks").find({}).toArray();
-  } else {
-    blocks = await db.collection("blocks").find({}).toArray();
-  }
-  const data = JSON.parse(JSON.stringify(blocks));
-
-  return { user, year, data };
+  return { user };
 };
 
 export const action: ActionFunction = async ({
@@ -41,54 +27,68 @@ export const action: ActionFunction = async ({
 }: ActionFunctionArgs) => {
   // try {
   const form = await request.clone().formData();
-  const blockId = form.get("blockId") as string;
-  const name = form.get("name") as string;
-  const floor = form.get("floor") as string;
-  const type = form.get("type") as string;
-  const meterNo = form.get("meterNo") as string;
-  const rent = form.get("rent") as string;
-  const amenities = form.get("amenities") as string;
+  const firstname = form.get("firstname") as string;
+  const lastname = form.get("lastname") as string;
+  const dob = form.get("dob") as string;
+  const email = form.get("email") as string;
+  const phone = form.get("phone") as string;
+  const idNumber = form.get("idNumber") as string;
+  const jobTitle = form.get("jobTitle") as string;
+  const gender = form.get("gender") as string;
+  const notes = form.get("notes") as string;
+  const zone = form.get("zone") as string;
 
   const errors = {
-    blockId: "",
-    name: "",
-    floor: "",
-    type: "",
-    meterNo: "",
-    rent: "",
-    amenities: "",
+    firstname: "",
+    lastname: "",
+    dob: "",
+    idNumber: "",
+    jobTitle: "",
+    gender: "",
+    notes: "",
+    email: "",
+    zone: "",
+    phone: "",
   };
 
-  if (!blockId) {
-    errors.blockId = "Block is Required";
+  if (!firstname) {
+    errors.firstname = "Firstname is Required";
   }
 
-  if (!name) {
-    errors.name = "House Number is Required";
+  if (!lastname) {
+    errors.lastname = "Lastname is Required";
   }
 
-  if (!floor) {
-    errors.floor = "Floor is Required";
+  if (!dob) {
+    errors.dob = "Date of Birth is Required";
   }
 
-  if (!/^\d{11}$/.test(meterNo)) {
-    errors.meterNo = "Meter Number is Required";
+  if (!email) {
+    errors.email = "Email address is Required";
   }
 
-  if (!type) {
-    errors.type = "Unit type is Required";
+  if (!/^\d{11}$/.test(idNumber)) {
+    errors.idNumber = "ID Number is Required";
   }
 
-  if (!rent) {
-    errors.rent = "Rent amount is required";
+  if (!jobTitle) {
+    errors.jobTitle = "Job Title is Required";
   }
 
-  if (!meterNo) {
-    errors.meterNo = "Meter Number is required";
+  if (!gender) {
+    errors.gender = "Gender is required";
   }
 
-  if (!amenities) {
-    errors.amenities = "Unit amenities are required";
+  if (!notes) {
+    errors.notes = "Notes are required";
+  }
+
+  if (!zone) {
+    errors.zone = "Zone/Area are required";
+  }
+
+  if (!phone) {
+    errors.phone = "Phone is required";
   }
 
   if (Object.values(errors).some((error) => error !== "")) {
@@ -96,26 +96,27 @@ export const action: ActionFunction = async ({
   }
 
   const data = {
-    name: name,
-    blockId: new ObjectId(blockId),
-    type: type,
-    floor: Number(floor),
-    rent: Number(rent),
-    meterNo: Number(meterNo),
-    amenities: amenities,
+    firstname: firstname,
+    lastname: lastname,
+    zone: zone,
+    idNumber: Number(idNumber),
+    dob: dob,
+    gender: gender,
+    phone: phone,
+    jobTitle: jobTitle,
     isOccupied: false,
   };
 
   const { db } = await connectToDatabase();
 
   const blockExists = await db
-    .collection("units")
-    .findOne({ name: name, blockId: new ObjectId(blockId) });
+    .collection("teams")
+    .findOne({ idNumber: idNumber, phone: phone });
   if (!blockExists) {
     const result = await db.collection("units").insertOne(data);
 
     if (!result.acknowledged) {
-      throw new Error("Failed to create unit");
+      throw new Error("Failed to create member");
     }
     return redirect("/app/units");
   }
@@ -123,7 +124,7 @@ export const action: ActionFunction = async ({
 };
 
 export default function NewUnit() {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col gap-4">
@@ -140,7 +141,7 @@ export default function NewUnit() {
       </div>
 
       <Paper shadow="xs" radius="xs" p="xl" maw={550}>
-        {/* <UnitForm blocks={blocks.data} /> */}
+        <MemberForm />
       </Paper>
     </div>
   );
