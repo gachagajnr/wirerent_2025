@@ -564,7 +564,7 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="flex justify-between gap-4 space-x-8 flex-col lg:flex-row md:flex-row sm:flex-col">
+          <div className="flex justify-between gap-4 space-x-8 mb-12 flex-col lg:flex-row md:flex-row sm:flex-col">
             {/* Step 1 */}
             <div className="flex flex-col items-center w-96 text-center">
               <div className="w-16 h-16 bg-green-600 text-white flex items-center justify-center rounded-full mb-4">
@@ -632,7 +632,7 @@ export default function Index() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-900">
-                Step 3: Confirm the Scheduling
+                Step 3: Confirm your Schedule
               </h3>
               <p className="text-sm text-gray-700 mt-2">
                 Once verified, confirm the scheduling and get ready for our team
