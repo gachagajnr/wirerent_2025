@@ -37,6 +37,7 @@ export const action: ActionFunction = async ({
   const gender = form.get("gender") as string;
   const notes = form.get("notes") as string;
   const zone = form.get("zone") as string;
+  // const uploadedFiles = JSON.parse(form.get("uploadedFiles") || "[]");
 
   const errors = {
     firstname: "",
@@ -49,6 +50,7 @@ export const action: ActionFunction = async ({
     email: "",
     zone: "",
     phone: "",
+    // profile: uploadedFiles,
   };
 
   if (!firstname) {
@@ -96,7 +98,7 @@ export const action: ActionFunction = async ({
   }
 
   const data = {
-    image:'',
+    image: "",
     firstname: firstname,
     lastname: lastname,
     zone: zone,

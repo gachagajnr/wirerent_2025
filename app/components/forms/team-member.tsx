@@ -1,5 +1,7 @@
-import { Form, useActionData, useNavigation } from "@remix-run/react";
+ import { Form, useActionData, useNavigation } from "@remix-run/react";
 import { HiLocationMarker } from "react-icons/hi";
+// import { UploadButton } from "~/utils/uploadthing";
+
 import {
   Button,
   TextInput,
@@ -10,6 +12,7 @@ import {
   Textarea,
 } from "@mantine/core";
 import { action } from "~/routes/app/route";
+// import { useState } from "react";
 
 export interface BlockData {
   _id: string;
@@ -23,10 +26,24 @@ export interface BlockData {
   rating?: number;
   availability?: boolean;
 }
+export interface ServerData {
+  uploadedBy: string;
+}
+export interface FileData {
+  name: string;
+  size: number;
+  key: string;
+  serverData: ServerData;
+  url: string;
+  customId: string | null;
+  type: string;
+}
+
 
 const MemberForm = () => {
   const navigation = useNavigation();
   const actionData = useActionData<typeof action>();
+  // const [uploadedFiles, setUploadedFiles] = useState();
 
   return (
     <Box maw={500} ta="start">
@@ -179,6 +196,47 @@ const MemberForm = () => {
             ) : null
           }
         />
+        {/* <UploadDropzone
+          className=""
+          content={{
+            button({ ready }) {
+              if (ready) return <div>Upload stuff</div>;
+              return "Getting ready...";
+            },
+            allowedContent({ ready, fileTypes, isUploading }) {
+              if (!ready) return "Checking what you allow";
+              if (isUploading) return "Seems like stuff is uploading";
+              return `Stuff you can upload: ${fileTypes.join(", ")}`;
+            },
+          }}
+          endpoint="imageUploader"
+          onClientUploadComplete={async (res) => {
+            setUploadedFiles(res as FileData[]);
+
+
+          }}
+          onUploadError={(error) => {
+            alert(`ERROR! ${error.message}`);
+          }}
+          onUploadBegin={() => {}}
+        /> */}
+          {/* <UploadButton
+        endpoint="imageUploader"
+        onClientUploadComplete={(res) => {
+          // Do something with the response
+          console.log("Files: ", res);
+          alert("Upload Completed");
+        }}
+        onUploadError={(error: Error) => {
+          // Do something with the error.
+          alert(`ERROR! ${error.message}`);
+        }}
+      />
+        <input
+          type="hidden"
+          name="uploadedFiles"
+          value={JSON.stringify(uploadedFiles)}
+        /> */}
 
         <Group justify="flex-end" mt="md">
           <Button type="submit" disabled={navigation.state === "submitting"}>

@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
+import { withUt } from "uploadthing/tw";
 
-export default {
+export default withUt({
   content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -20,6 +21,6 @@ export default {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light", "dark", "winter", "lofi", "nord","corporate"],
+    themes: ["light", "dark", "winter", "lofi", "nord", "corporate"],
   },
-} satisfies Config;
+}) satisfies Config;
