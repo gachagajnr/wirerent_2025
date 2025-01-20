@@ -115,8 +115,8 @@ const MemberForm = () => {
             label="Gender"
             placeholder="Gender"
             data={[
-              { value: "MALE", label: "MALE" },
-              { value: "FEMALE", label: "FEMALE" },
+              { value: "Male", label: "Male" },
+              { value: "Female", label: "Female" },
             ]}
             error={
               actionData?.errors?.gender ? (

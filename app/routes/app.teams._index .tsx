@@ -1,8 +1,9 @@
-import { Link, } from "@remix-run/react";
+import { Link, useLoaderData, } from "@remix-run/react";
 import { Title } from "@mantine/core";
 import { LoaderFunction } from "@remix-run/node";
 import { authenticator } from "~/utils/auth.server";
 import { connectToDatabase } from "~/utils/db.server";
+import TeamPlayerCard, { TeamPlayerData } from "~/components/team-player/team-player-card";
 // import { PlanData } from "~/components/plan/plan-card";
 // import AdminPlanCard from "~/components/plan/admin-plan-card ";
 
@@ -19,16 +20,16 @@ export const loader: LoaderFunction = async ({ request }) => {
   let data;
 
   if (yearFilter) {
-    data = await db.collection("plans").find({}).toArray();
+    data = await db.collection("teams").find({}).toArray();
   } else {
-    data = await db.collection("plans").find({}).toArray();
+    data = await db.collection("teams").find({}).toArray();
   }
-  const plans = JSON.parse(JSON.stringify(data));
-   return { user, year, plans };
+  const teams = JSON.parse(JSON.stringify(data));
+   return { user, year, teams };
 };
 
 export default function Teams() {
-  // const data = useLoaderData<typeof loader>();
+  const data = useLoaderData<typeof loader>();
  
   return (
     <div className="flex flex-col gap-4">
@@ -41,20 +42,20 @@ export default function Teams() {
         </Link>
       </div>
       <div className="flex flex-col lg:flex-row md:flex-row sm:flex-col justify-start gap-2">
-        {/* {data.plans.length === 0 ? (
-          <p className="text-gray-500 italic">{`You have added 0 plans`}</p>
+        {data.teams.length === 0 ? (
+          <p className="text-gray-500 italic">{`You have added 0 team players`}</p>
         ) : (
-          data.plans.map((plan: PlanData) => {
+          data.teams.map((team: TeamPlayerData) => {
             return (
               <div
-                key={plan._id}
+                key={team._id}
                 className=" text-left p-4"
               >
-                <AdminPlanCard plan={plan} />
+                <TeamPlayerCard teamPlayer={team} />
               </div>
             );
           })
-        )} */}
+        )}
       </div>
     </div>
   );

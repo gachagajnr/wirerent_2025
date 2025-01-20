@@ -67,7 +67,7 @@ export const action: ActionFunction = async ({
     errors.email = "Email address is Required";
   }
 
-  if (!/^\d{11}$/.test(idNumber)) {
+  if (!idNumber) {
     errors.idNumber = "ID Number is Required";
   }
 
@@ -96,6 +96,7 @@ export const action: ActionFunction = async ({
   }
 
   const data = {
+    image:'',
     firstname: firstname,
     lastname: lastname,
     zone: zone,
@@ -113,12 +114,12 @@ export const action: ActionFunction = async ({
     .collection("teams")
     .findOne({ idNumber: idNumber, phone: phone });
   if (!blockExists) {
-    const result = await db.collection("units").insertOne(data);
+    const result = await db.collection("teams").insertOne(data);
 
     if (!result.acknowledged) {
       throw new Error("Failed to create member");
     }
-    return redirect("/app/units");
+    return redirect("/app/teams");
   }
   throw new Error("Unit with name already exists");
 };
