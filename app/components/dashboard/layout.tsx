@@ -124,6 +124,12 @@ export default function DashboardLayout({ user }: DashboardLayoutProps) {
               </Link>
             </li>
             <li>
+              <Link to="/app/services">
+                <HiPlay />
+                Services
+              </Link>
+            </li>
+            <li>
               <Link to="/app/settings">
                 <FaModx />
                 Settings

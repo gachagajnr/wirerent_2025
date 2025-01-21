@@ -10,6 +10,7 @@ import {
 import { Link } from "@remix-run/react";
 import {
   Anchor,
+  Avatar,
   Box,
   Burger,
   Button,
@@ -62,7 +63,20 @@ const mockdata = [
   },
 ];
 
-export default function Navbar({ className }: { className: string }) {
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  // Add any other properties your user object has
+}
+
+export default function Navbar({
+  className,
+  user,
+}: {
+  className: string;
+  user: User;
+}) {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
@@ -250,16 +264,25 @@ export default function Navbar({ className }: { className: string }) {
             </Link>
           </Group>
           <Group visibleFrom="sm">
-            <Link to="/login">
-              <Button variant="default" component="a">
-                Sign in
-              </Button>
-            </Link>
-            <Link to="/login">
+            {user.email ? (
+              <div className="flex flex-row items-center gap-1">
+                <Avatar color="cyan" radius="xl">
+                  {user.email.substring(0,1)}
+                </Avatar>
+                <span className="text-xs">{user.name}</span>
+              </div>
+            ) : (
+              <Link to="/login">
+                <Button variant="default" component="a">
+                  Sign in
+                </Button>
+              </Link>
+            )}
+            {/* <Link to="/login">
               <Button variant="gradient" component="a">
                 Join Our Team
               </Button>
-            </Link>
+            </Link> */}
 
             {/* <Link to="/register">
               <Button component="a">Sign up</Button>
@@ -307,19 +330,28 @@ export default function Navbar({ className }: { className: string }) {
           <Divider my="sm" />
 
           <Group justify="center" grow pb="xl" px="md">
-            <Link to="/login">
+            {/* <Link to="/login">
               <Button variant="default" component="a">
                 Join Our Team
               </Button>
-            </Link>
+            </Link> */}
             {/* <Link to="/register">
               <Button component="a">Sign up</Button>
             </Link> */}
-            <Link to="/login">
-              <Button variant="default" component="a">
-                Sign in
-              </Button>
-            </Link>
+            {user.email ? (
+              <div className="flex flex-row items-center gap-1">
+                <Avatar color="cyan" radius="xl">
+                  {user.email.substring(0,1)}
+                </Avatar>
+                <span className="text-xs">{user.name}</span>
+              </div>
+            ) : (
+              <Link to="/login">
+                <Button variant="default" component="a">
+                  Sign in
+                </Button>
+              </Link>
+            )}
           </Group>
         </ScrollArea>
       </Drawer>

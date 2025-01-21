@@ -21,6 +21,7 @@ import { ActionIcon, Group, Paper } from "@mantine/core";
 import { connectToDatabase } from "~/utils/db.server";
 import PlanCard, { PlanData } from "~/components/plan/plan-card";
 import { Outlet, useLoaderData } from "@remix-run/react";
+import { authenticator } from "~/utils/auth.server";
 
 export const meta: MetaFunction = () => {
   return [
@@ -29,10 +30,10 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader: LoaderFunction = async () => {
-  // const user = await authenticator.isAuthenticated(request, {
-  //   failureRedirect: "/",
-  // });
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = await authenticator.isAuthenticated(request, {
+    failureRedirect: "/",
+  });
 
   const { db } = await connectToDatabase();
 
@@ -40,7 +41,7 @@ export const loader: LoaderFunction = async () => {
 
   const plans = JSON.parse(JSON.stringify(response));
 
-  return { plans };
+  return { plans, user };
 };
 
 export default function Index() {
@@ -64,7 +65,7 @@ export default function Index() {
   ];
   return (
     <div className="flex flex-col w-full h-screen">
-      <Navbar className="fixed top-0 left-0 w-full z-50 bg-white" />
+      <Navbar user={data.user} className="fixed top-0 left-0 w-full z-50 bg-white" />
       <main className=" ">
         <Outlet />
         <div className="hero min-h-screen bg-gradient-to-br from-green-100 via-white to-green-50">
