@@ -252,12 +252,18 @@ export default function Navbar({ className }: { className: string }) {
           <Group visibleFrom="sm">
             <Link to="/login">
               <Button variant="default" component="a">
-                Log in
+                Sign in
               </Button>
             </Link>
-            <Link to="/register">
-              <Button component="a">Sign up</Button>
+            <Link to="/login">
+              <Button variant="gradient" component="a">
+                Join Our Team
+              </Button>
             </Link>
+
+            {/* <Link to="/register">
+              <Button component="a">Sign up</Button>
+            </Link> */}
           </Group>
           <Burger
             opened={drawerOpened}
@@ -303,11 +309,16 @@ export default function Navbar({ className }: { className: string }) {
           <Group justify="center" grow pb="xl" px="md">
             <Link to="/login">
               <Button variant="default" component="a">
-                Log in
+                Join Our Team
               </Button>
             </Link>
-            <Link to="/register">
+            {/* <Link to="/register">
               <Button component="a">Sign up</Button>
+            </Link> */}
+            <Link to="/login">
+              <Button variant="default" component="a">
+                Sign in
+              </Button>
             </Link>
           </Group>
         </ScrollArea>

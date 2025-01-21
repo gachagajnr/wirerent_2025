@@ -1,4 +1,4 @@
-"use client";
+
 
 import { FaInstagram, FaTwitterSquare } from "react-icons/fa";
 import { ActionIcon, Container, Group, Text } from "@mantine/core";

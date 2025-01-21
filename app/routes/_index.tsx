@@ -92,7 +92,7 @@ export default function Index() {
 
                   <div className="flex flex-row gap-4 flex-wrap ">
                     <a
-                      href="#services"
+                      href="#plans"
                       className="btn bg-green-600 hover:bg-green-700 text-white w-52  px-8 py-4 font-semibold shadow-lg transition-all duration-300"
                     >
                       Explore Our Plans
@@ -417,7 +417,7 @@ export default function Index() {
             </div>
           </div>
         </section>
-        <section id="subscription" className="py-16 bg-gray-50">
+        <section id="plans" className="py-16 bg-gray-50">
           <div className="container max-w-5xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-8 text-gray-900">
               Pricing Plans
@@ -727,6 +727,41 @@ export default function Index() {
                   <ContactForm />
                 </Paper>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-gray-100 mt-6 mb-6 py-12">
+          <div className="container mx-auto px-6 lg:px-20">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl font-extrabold text-gray-800 sm:text-4xl">
+                Join Our Team
+              </h2>
+              <p className="mt-4 text-lg text-gray-600">
+                We’re always looking for talented individuals to join our
+                dynamic team. If you’re passionate, innovative, and ready to
+                make an impact, we’d love to hear from you!
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center">
+              <p className="text-gray-700 text-center mb-6">
+                Share your details and we’ll get in touch if there’s a fit. Feel
+                free to send your resume to{" "}
+                <a
+                  href="mailto:careers@yourcompany.com"
+                  className="text-blue-600 hover:underline"
+                >
+                  careers@yourcompany.com
+                </a>
+                .
+              </p>
+              <a
+                href="mailto:careers@yourcompany.com"
+                className="px-6 py-3 text-white bg-blue-600 rounded-md text-lg font-medium hover:bg-blue-700"
+              >
+                Get in Touch
+              </a>
             </div>
           </div>
         </section>
